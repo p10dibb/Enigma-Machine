@@ -15,7 +15,9 @@ namespace Enigma
             m.SetPlugs("Ab CD");
            string x= m.CharSwap_Plugs("the cat");
 
-            Console.WriteLine(x);
+           
+            Console.WriteLine(m.Rings[0]=new Ring('Y',"ABCDExGHIJKLmNOPQRSTUVWfYZ"));
+            m.Rings[0].displayAll();
 
         }
     }

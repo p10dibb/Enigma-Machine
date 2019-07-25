@@ -14,6 +14,11 @@ namespace Enigma
         
         public Machine()
         {
+            for (int i=0; i<r.Length; i++)
+            {
+                r[i] = new Ring();
+            }
+
 
         }
 
@@ -64,6 +69,12 @@ namespace Enigma
             return ret;
         }
        
+
+        public Ring[] Rings
+        {
+            get { return this.r; }
+            set { this.r = value; }
+        }
 
     }
 }

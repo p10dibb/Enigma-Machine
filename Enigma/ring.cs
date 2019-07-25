@@ -8,43 +8,64 @@ namespace Enigma
 {
     class Ring
     {
-        char[] alphabet;
+        char[] alphabet= new char[26];
 
         public Ring()
         {
-            Console.Write("woot");
-            alphabet = new char[26];
-            for (int i = 0; i < 26; i++)
-            {
-                char x=(char)(97 + i);
-              
-                alphabet[i] = x;
-            }
+            SetRingDefault();
+    
 
            
 
         }
 
-        public Ring(char key)
+        public Ring(char key,string letterorder)
+        {
+            SetRing(letterorder);
+
+            int shift = (int)key - 'A';
+            for (int i=0; i < shift; i++)
+            {
+                shiftRight();
+            }
+
+        }
+
+        
+
+        private string SetRing(string set)
+        {
+            if (set.Length != 26)
+            {
+                SetRingDefault();
+                return "Not enough char";
+            }
+
+            bool[] used =new bool[26];
+            string letters = set.ToUpper();
+            for (int i=0; i < 26; i++)
+            {
+                if (used[(int)letters[i]-(int)'A'])
+                {
+                    SetRingDefault();
+                    return "multiple of same letter";
+                }
+                alphabet[i] = letters[i];
+                used[(int)letters[i] - (int)'A'] = true;
+            }
+
+
+            return "success";
+        }
+        private void SetRingDefault()
         {
             alphabet = new char[26];
             for (int i = 0; i < 26; i++)
             {
-                
-                int cur= (int)key + i;
-                if (cur > (int)'z')
-                {
-                    key = (char)((int)'a' - i);
-                }
-
-
-                char x = (char)((int)key + i);
-
-
+                char x = (char)((int)'A' + i);
 
                 alphabet[i] = x;
             }
-
 
         }
 
