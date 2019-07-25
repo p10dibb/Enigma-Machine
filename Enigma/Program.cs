@@ -10,6 +10,13 @@ namespace Enigma
     {
         static void Main(string[] args)
         {
+
+            Machine m = new Machine();
+            m.SetPlugs("Ab CD");
+           string x= m.CharSwap_Plugs("the cat");
+
+            Console.WriteLine(x);
+
         }
     }
 }
