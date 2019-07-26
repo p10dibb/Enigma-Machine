@@ -13,11 +13,12 @@ namespace Enigma
 
             Machine m = new Machine();
             m.SetPlugs("Ab CD");
-           string x= m.CharSwap_Plugs("the cat");
 
-           
-            Console.WriteLine(m.Rings[0]=new Ring('Y',"ABCDExGHIJKLmNOPQRSTUVWfYZ"));
-            m.Rings[0].displayAll();
+            string a = m.encrypt_Rings("AA");
+            Console.WriteLine("AA="+a);
+
+            Console.WriteLine(a+"==" + m.decrypt_Rings(a));
+
 
         }
     }

@@ -103,5 +103,23 @@ namespace Enigma
                 Console.WriteLine(alphabet[i]);
             }
         }
+
+        public char[] Alphabet
+        {
+            get { return this.alphabet; }
+        }
+
+        public int Find(char c)
+        {
+            for(int i=0; i < alphabet.Length; i++)
+            {
+                if (c == alphabet[i])
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
     }
 }
