@@ -11,13 +11,37 @@ namespace Enigma
         static void Main(string[] args)
         {
 
-            Machine m = new Machine();
-            m.SetPlugs("Ab CD");
+            Machine m = new Machine("a","123","HAl","Ah bk mc xp qu sn iy ot wg jf");
+           
 
-            string a = m.encrypt_Rings("AA");
-            Console.WriteLine("AA="+a);
+            string a = "Hello World";
+            Console.WriteLine(a);
+            a = m.CharSwap_Plugs(a);
+            Console.WriteLine(a);
+            a = m.encrypt_Rings(a);
+            Console.WriteLine(a);
+            a = m.CharSwap_Plugs(a);
+            Console.WriteLine(a);
+            a = m.encrypt_Rings_back(a);
+            Console.WriteLine(a);
+            Console.WriteLine("--------");
 
-            Console.WriteLine(a+"==" + m.decrypt_Rings(a));
+            Console.WriteLine(a);
+            a = m.encrypt_Rings(a);
+            Console.WriteLine(a);
+            a = m.CharSwap_Plugs(a);
+            Console.WriteLine(a);
+            a = m.encrypt_Rings_back(a);
+            Console.WriteLine(a);
+            a = m.CharSwap_Plugs(a);
+            Console.WriteLine(a);
+
+
+
+
+
+
+
 
 
         }

@@ -23,8 +23,10 @@ namespace Enigma
         }
 
         public Machine(string key, string rottor, string ring, string plug) {
-            string alpha = "abcdefghijklmnopqrstuvwxyz";
+            string[] alpha = new string[] { "EKMFLGDQVZNTOWYHXUSPAIBRCJ", "AJDKSIRUXBLHWTMCQGZNPYFVOE", "BDFHJLCPRTXVZNYEIWGAKMUSQO" };
             string ringSetting = ring.ToUpper();
+
+            this.SetPlugs(plug);
 
             if (ringSetting.Length != r.Length)
             {
@@ -46,7 +48,7 @@ namespace Enigma
 
             for(int i = 0; i < r.Length; i++)
             {
-                r[i] = new Ring(ringSetting[i], alpha);
+                r[i] = new Ring(ringSetting[i], alpha[i]);
             }
 
 
@@ -62,13 +64,16 @@ namespace Enigma
 
             for(int i= 0; i < p.Length; i++)
             {
-                p[i] = r[1].Alphabet[r[0].Find(p[i])];
-                r[0].shiftLeft();
-                r[1].shiftRight();
-                p[i] = r[2].Alphabet[r[1].Find(p[i])];
-                r[1].shiftLeft();
-                r[2].shiftRight();
 
+                if ((int)p[i] <= (int)'Z' && (int)p[i] >= (int)'A')
+                {
+                    p[i] = r[1].Alphabet[r[0].Find(p[i])];
+                    r[0].shiftLeft();
+                    r[1].shiftRight();
+                    p[i] = r[2].Alphabet[r[1].Find(p[i])];
+                    r[1].shiftLeft();
+                    r[2].shiftRight();
+                }
             }
 
 
@@ -77,28 +82,39 @@ namespace Enigma
 
         }
 
-        public string decrypt_Rings(string phrase) {
+
+
+        public string encrypt_Rings_back(string phrase) {
             char[] p = (phrase.ToUpper()).ToCharArray();
 
             for (int i = p.Length-1 ; i >= 0; i--)
             {
-                r[2].shiftLeft();
-                r[1].shiftRight();
-                p[i] = r[1].Alphabet[r[2].Find(p[i])];
-                r[1].shiftLeft();
-                r[0].shiftRight();
-                p[i] = r[0].Alphabet[r[1].Find(p[i])];
+                if ((int)p[i] <= (int)'Z' && (int)p[i] >= (int)'A')
+                {
+                    r[2].shiftLeft();
+                    r[1].shiftRight();
+                    p[i] = r[1].Alphabet[r[2].Find(p[i])];
+                    r[1].shiftLeft();
+                    r[0].shiftRight();
+                    p[i] = r[0].Alphabet[r[1].Find(p[i])];
 
-            
+                }
                 
                
 
             }
 
 
+
+
             return new string(p);
         }
         
+
+  
+
+     
+
 
         public void SetPlugs(string plug)
         {
