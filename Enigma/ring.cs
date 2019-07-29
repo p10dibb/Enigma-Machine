@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Enigma
 {
-    class Ring
+     public class Ring
     {
         char[] alphabet= new char[26];
 

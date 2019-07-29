@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Enigma
 {
-    class Machine
+    public class Machine
     {
         Ring[] r = new Ring[3];
+        private Random rand = new Random();
 
         Dictionary<char, char> plug_board = new Dictionary<char, char>();
         
@@ -111,12 +112,51 @@ namespace Enigma
         }
         
 
-  
+        public string Run(string phrase)
+        {
+            string ret;
+            ret = this.CharSwap_Plugs(phrase);
+          
+            ret = this.encrypt_Rings(ret);
+            ret = this.CharSwap_Plugs(ret);
+            ret = this.encrypt_Rings_back(ret);
 
+            return ret;
+
+        }
+
+
+        public string Generate_PlugBoard()
+        {
+            int count = 0;
+            bool[] used = new bool[26];
+
+            char[] c = new char[26];
+            List<char> ret = new List<char>();
+
+            int r = 0;
+            while (count < 25)
+            {
+                r = rand.Next(0, 26);
+                if (!used[r])
+                {
+                    used[r] = true;
+                    ret.Add((char) ((int)'a' + r));
+                    count++;
+                    if (count%2 == 1)
+                    {
+                        ret.Add(' ');
+                    }
+                }
+            }
+
+            return new string(ret.ToArray());           
+                               
+        }
      
 
 
-        public void SetPlugs(string plug)
+        private void SetPlugs(string plug)
         {
             string plugs = plug.ToUpper();
             int count = 0;
@@ -136,7 +176,7 @@ namespace Enigma
         }
         
         
-        public String CharSwap_Plugs(string Phrase)
+        private String CharSwap_Plugs(string Phrase)
         {
             string phrase = Phrase.ToUpper();
             char[] c = new char[phrase.Length];
