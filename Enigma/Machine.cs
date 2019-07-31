@@ -68,12 +68,13 @@ namespace Enigma
 
                 if ((int)p[i] <= (int)'Z' && (int)p[i] >= (int)'A')
                 {
-                    p[i] = r[1].Alphabet[r[0].Find(p[i])];
-                    r[0].shiftLeft();
-                    r[1].shiftRight();
-                    p[i] = r[2].Alphabet[r[1].Find(p[i])];
-                    r[1].shiftLeft();
-                    r[2].shiftRight();
+                    for (int j = 0; j < r.Length - 1; j++)
+                    {
+                        p[i] = r[j+1].Alphabet[r[j].Find(p[i])];
+                        r[j].shiftLeft();
+                        r[j+1].shiftRight();
+                    }
+         
                 }
             }
 
@@ -85,19 +86,21 @@ namespace Enigma
 
 
 
-        public string encrypt_Rings_back(string phrase) {
+        public string reflection(string phrase) {
             char[] p = (phrase.ToUpper()).ToCharArray();
 
             for (int i = p.Length-1 ; i >= 0; i--)
             {
                 if ((int)p[i] <= (int)'Z' && (int)p[i] >= (int)'A')
                 {
-                    r[2].shiftLeft();
-                    r[1].shiftRight();
-                    p[i] = r[1].Alphabet[r[2].Find(p[i])];
-                    r[1].shiftLeft();
-                    r[0].shiftRight();
-                    p[i] = r[0].Alphabet[r[1].Find(p[i])];
+
+                    for (int j = r.Length - 1; j >= 1; j--)
+                    {
+                        r[j].shiftLeft();
+                        r[j - 1].shiftRight();
+                        p[i] = r[j - 1].Alphabet[r[j].Find(p[i])];
+                    }
+      
 
                 }
                 
@@ -112,15 +115,28 @@ namespace Enigma
         }
         
 
-        public string Run(string phrase)
+        public string encrypt(string phrase)
         {
             string ret;
             ret = this.CharSwap_Plugs(phrase);
           
             ret = this.encrypt_Rings(ret);
             ret = this.CharSwap_Plugs(ret);
-            ret = this.encrypt_Rings_back(ret);
+            ret = this.reflection(ret);
 
+            return ret;
+
+        }
+
+        public string decrypt(string phrase)
+        {
+            string ret;
+           
+
+            ret = this.encrypt_Rings(phrase);
+            ret = this.CharSwap_Plugs(ret);
+            ret = this.reflection(ret);
+            ret = this.CharSwap_Plugs(ret);
             return ret;
 
         }
@@ -135,23 +151,46 @@ namespace Enigma
             List<char> ret = new List<char>();
 
             int r = 0;
-            while (count < 25)
+            while (count < 26)
             {
+                
                 r = rand.Next(0, 26);
                 if (!used[r])
                 {
                     used[r] = true;
-                    ret.Add((char) ((int)'a' + r));
+                    ret.Add((char) ((int)'A' + r));
                     count++;
-                    if (count%2 == 1)
+                    if (count%2 == 0)
                     {
                         ret.Add(' ');
                     }
+               
                 }
             }
 
             return new string(ret.ToArray());           
                                
+        }
+
+        public string Generate_RingSetting(string amt)
+        {
+            if (amt.Length == 1 && ((int)amt[0] >= (int)'0' && (int)amt[0] <= (int)'9'))
+            {
+                int a = (int)amt[0] - (int)'0';
+
+                char[] ret = new char[a];
+                int c;
+                for (int i = 0; i < a; i++)
+                {
+                    c = rand.Next(0, 25);
+                    ret[i] = (char)((int)'A' + c);
+                }
+                return new string(ret);
+            }
+
+
+            return "";
+         
         }
      
 
