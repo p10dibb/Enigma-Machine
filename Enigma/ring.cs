@@ -8,12 +8,13 @@ namespace Enigma
 {
      public class Ring
     {
-        char[] alphabet= new char[26];
+
+        string def = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@ .,$;:#&%";
+        char[] alphabet= new char[72];
 
         public Ring()
         {
             SetRingDefault();
-    
 
            
 
@@ -33,25 +34,45 @@ namespace Enigma
 
         
 
+        //private string SetRing(string set)
+        //{
+        //    if (set.Length != 71)
+        //    {
+        //        SetRingDefault();
+        //        return "Not enough char";
+        //    }
+        //}
+
         private string SetRing(string set)
         {
-            if (set.Length != 26)
+            Console.WriteLine(set.Length);
+            if (set.Length != 72)
             {
                 SetRingDefault();
                 return "Not enough char";
             }
 
-            bool[] used =new bool[26];
-            string letters = set.ToUpper();
-            for (int i=0; i < 26; i++)
+            bool[] used =new bool[72];
+            
+            for (int i=0; i < 72; i++)
             {
-                if (used[(int)letters[i]-(int)'A'])
+                for (int j = 0; j < def.Length; j++)
                 {
-                    SetRingDefault();
-                    return "multiple of same letter";
+                    if (def[j] == set[i] && !used[j])
+                    {
+                        SetRingDefault();
+                        return "multiple of same letter";
+                    }
+                    else
+                    {
+                        used[j] = true;
+                        alphabet[i] = set[i];
+                        break;
+                    }
+
                 }
-                alphabet[i] = letters[i];
-                used[(int)letters[i] - (int)'A'] = true;
+          
+             
             }
 
 
@@ -59,15 +80,22 @@ namespace Enigma
         }
         private void SetRingDefault()
         {
-            alphabet = new char[26];
-            for (int i = 0; i < 26; i++)
-            {
-                char x = (char)((int)'A' + i);
-
-                alphabet[i] = x;
-            }
+  
+            alphabet=def.ToCharArray();
 
         }
+
+        //private void SetRingDefault(Dictionary<int,char> c)
+        //{
+        //    alphabet = new char[71];
+
+        //    for (int i = 0; i < 71; i++)
+        //    {
+        //        alphabet[i] = c[i];
+        //    }
+
+
+        //}
 
         public void shiftLeft()
         {
@@ -77,14 +105,14 @@ namespace Enigma
             {
                 alphabet[i] = alphabet[i + 1];
             }
-            alphabet[25] = temp;
+            alphabet[alphabet.Length-1] = temp;
 
 
 
         }
         public void shiftRight()
         {
-            char temp = alphabet[25];
+            char temp = alphabet[alphabet.Length-1];
             char hold = '\0';
             for (int i = alphabet.Length-1; i >  0; i--)
             {
@@ -113,6 +141,7 @@ namespace Enigma
         {
             for(int i=0; i < alphabet.Length; i++)
             {
+                char df = alphabet[i];
                 if (c == alphabet[i])
                 {
                     return i;

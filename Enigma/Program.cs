@@ -11,16 +11,15 @@ namespace Enigma
         static void Main(string[] args)
         {
 
-            Machine m = new Machine("a","123","HAl","Ah bk mc xp qu sn iy ot wg jf");
+            Machine m = new Machine();
 
 
-            Console.WriteLine(m.Generate_PlugBoard());
+             Console.WriteLine(m.Generate_PlugBoard());
+             Console.WriteLine( m.encrypt("hello World"));
+           
 
 
 
-
-
-            
 
 
         }
