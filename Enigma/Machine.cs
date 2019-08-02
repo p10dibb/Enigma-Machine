@@ -10,7 +10,7 @@ namespace Enigma
     {
         Ring[] r = new Ring[3];
         private Random rand = new Random();
-
+        Dictionary<int, char> alphabet = new Dictionary<int, char>();
         Dictionary<char, char> plug_board = new Dictionary<char, char>();
         
         public Machine()
