@@ -12,3 +12,17 @@ C:\Users\PDibble\Desktop\woot\Enigma-Machine\wrapper\obj\Debug\wrapper.csproj.Co
 C:\Users\PDibble\Desktop\woot\Enigma-Machine\wrapper\obj\Debug\wrapper.csproj.CopyComplete
 C:\Users\PDibble\Desktop\woot\Enigma-Machine\wrapper\obj\Debug\wrapper.exe
 C:\Users\PDibble\Desktop\woot\Enigma-Machine\wrapper\obj\Debug\wrapper.pdb
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\bin\Debug\wrapper.exe.config
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\bin\Debug\wrapper.exe
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\bin\Debug\wrapper.pdb
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\bin\Debug\Enigma.exe
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\bin\Debug\Enigma.pdb
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\bin\Debug\Enigma.exe.config
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.csprojAssemblyReference.cache
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.Form1.resources
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.Properties.Resources.resources
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.csproj.GenerateResource.cache
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.csproj.CoreCompileInputs.cache
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.csproj.CopyComplete
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.exe
+C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\wrapper\obj\Debug\wrapper.pdb
