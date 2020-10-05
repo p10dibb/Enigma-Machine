@@ -12,3 +12,10 @@ C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\Enigma\obj\Debug\
 C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\Enigma\obj\Debug\Enigma.csproj.CoreCompileInputs.cache
 C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\Enigma\obj\Debug\Enigma.exe
 C:\Users\pauld\OneDrive\Desktop\cpts\gitKracken\Enigma Machine\Enigma\obj\Debug\Enigma.pdb
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Enigma\bin\Debug\Enigma.exe.config
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Enigma\bin\Debug\Enigma.exe
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Enigma\bin\Debug\Enigma.pdb
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Enigma\obj\Debug\Enigma.csprojAssemblyReference.cache
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Enigma\obj\Debug\Enigma.csproj.CoreCompileInputs.cache
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Enigma\obj\Debug\Enigma.exe
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Enigma\obj\Debug\Enigma.pdb
