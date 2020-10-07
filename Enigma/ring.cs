@@ -24,24 +24,22 @@ namespace Enigma
         {
             SetRing(shiftString);
 
-            int shift = (int)key - 'A';
-            for (int i=0; i < shift; i++)
-            {
-                rotate();
-            }
+            setRingSetting(key);
 
         }
 
-        
-
-        //private string SetRing(string set)
-        //{
-        //    if (set.Length != 71)
-        //    {
-        //        SetRingDefault();
-        //        return "Not enough char";
-        //    }
-        //}
+        public void setRingSetting(char key)
+        {
+            if (key >= 'A' && key <= 'Z')
+            {
+                int shift = (int)key - 'A';
+                for (int i = 0; i < shift; i++)
+                {
+                    rotate();
+                }
+            }
+           
+        }
 
         public string SetRing(string set)
         {
