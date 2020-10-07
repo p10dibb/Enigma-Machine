@@ -15,16 +15,7 @@ namespace Enigma
         
         public Machine()
         {
-            this.Set_Alphabet();
-            string[] alpha = new string[] { "7Q$He21wsnd49;cIPVu3RC:oAXbm&jy,vDx@EOMTNYWkz#pfr6G%g5Z0UaBLFhJl8 StK.iq", "k C6gWpn5;EqJfuFs3OZ89zLl4b$hUQXT&Ba.0x#eH,2dm:7Sc@iRPjwtIGv1NVr%YAyDoMK","wnu3#xBP6ypahmb:M0YlZ ef%sEdJUN9G@SQt&V.RFXjAi4LqHvr125T,K7zWcog8I;$COkD" };
-            string ringSetting = "AAA";
-            for (int i=0; i<r.Length; i++)
-            {
-              
-               r[i] = new Ring('A',alpha[i]);
-            }
-
-
+           
         }
 
         public Machine(string key, string rottor, string ring, string plug) {

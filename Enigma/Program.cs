@@ -17,14 +17,10 @@ namespace Enigma
             //Console.WriteLine(m.Generate_PlugBoard());
             //Console.WriteLine( m.encrypt("hello World"));
 
+            //"RS TU VW YZ LX MK JI HG EF QP CD ON AB"
+          PlugBoard p = new PlugBoard("RS TU VW YZ LX MK JI HG EF QP CD ON AB");
 
-            Rotors r = new Rotors();
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine(r.scrambleLetter('A'));
-            }
-
-
+            Console.WriteLine(p.swapLetter('J'));
             while (true) ;
 
            
