@@ -80,9 +80,9 @@ namespace Enigma
                     {
                        
                      
-                        p[i] = r[j+1].Alphabet[r[j].Find(p[i])];
-                        r[j].shiftLeft();
-                        r[j+1].shiftRight();
+                        //p[i] = r[j+1].Alphabet[r[j].Find(p[i])];
+                        //r[j].shiftLeft();
+                        //r[j+1].shiftRight();
                     }
          
                 }
@@ -106,9 +106,9 @@ namespace Enigma
 
                     for (int j = r.Length - 1; j >= 1; j--)
                     {
-                        r[j].shiftLeft();
-                        r[j - 1].shiftRight();
-                        p[i] = r[j - 1].Alphabet[r[j].Find(p[i])];
+                        //r[j].shiftLeft();
+                        //r[j - 1].shiftRight();
+                        //p[i] = r[j - 1].Alphabet[r[j].Find(p[i])];
                     }
       
 

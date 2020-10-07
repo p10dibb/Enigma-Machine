@@ -8,9 +8,9 @@ namespace Enigma
 {
      public class Ring
     {
-
-        string def = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@ .,$;:#&%";
-        char[] alphabet= new char[72];
+        const int AlphabetLength= 26;
+        int[] ringShift = new int[AlphabetLength];
+        
 
         public Ring()
         {
@@ -20,14 +20,14 @@ namespace Enigma
 
         }
 
-        public Ring(char key,string letterorder)
+        public Ring(char key,string shiftString)
         {
-            SetRing(letterorder);
+            SetRing(shiftString);
 
             int shift = (int)key - 'A';
             for (int i=0; i < shift; i++)
             {
-                shiftRight();
+                rotate();
             }
 
         }
@@ -43,82 +43,70 @@ namespace Enigma
         //    }
         //}
 
-        private string SetRing(string set)
+        public string SetRing(string set)
         {
-            Console.WriteLine(set.Length);
-            if (set.Length != 72)
+
+           string[] ringShiftString= set.Split(',');
+
+            if (ringShiftString.Length != AlphabetLength)
             {
                 SetRingDefault();
-                return "Not enough char";
+                return "Not enough inputs";
             }
 
-            bool[] used =new bool[72];
+            bool[] used =new bool[AlphabetLength];
             
-            for (int i=0; i < 72; i++)
-            {
-                for (int j = 0; j < def.Length; j++)
-                {
-                    if (def[j] == set[i] && !used[j])
-                    {
-                        SetRingDefault();
-                        return "multiple of same letter";
-                    }
-                    else
-                    {
-                        used[j] = true;
-                        alphabet[i] = set[i];
-                        break;
-                    }
 
+            
+            
+            for(int i=0;i< ringShiftString.Length; i++)
+            {
+                if(Int32.TryParse(ringShiftString[i], out int numval))
+                {
+                    this.ringShift[i] = numval;
                 }
-          
-             
+                else
+                {
+                    SetRingDefault();
+                    return "could not parse " + ringShiftString[i];
+                }
+
             }
 
+          for(int i=0; i > this.ringShift.Length; i++)
+            {
+                if (used[i + this.ringShift[i]])
+                {
+                    SetRingDefault();
+                    return "dublicate wiring";
+                }
+                else
+                {
+                    used[i + this.ringShift[i]] = true;
+                }
+            }
 
             return "success";
         }
         private void SetRingDefault()
         {
-  
-            alphabet=def.ToCharArray();
+            for(int i = 0; i < AlphabetLength; i++)
+            {
+                ringShift[i] = 2;
+
+            }
 
         }
 
-        //private void SetRingDefault(Dictionary<int,char> c)
-        //{
-        //    alphabet = new char[71];
 
-        //    for (int i = 0; i < 71; i++)
-        //    {
-        //        alphabet[i] = c[i];
-        //    }
-
-
-        //}
-
-        public void shiftLeft()
+        public void rotate()
         {
-            char temp = alphabet[0];
-            char hold = '\0';
-            for (int i = 0; i <alphabet.Length-1; i++)
+            int temp = ringShift[0];
+            for (int i = 0; i <ringShift.Length-1; i++)
             {
-                alphabet[i] = alphabet[i + 1];
+                ringShift[i] = ringShift[i + 1];
             }
-            alphabet[alphabet.Length-1] = temp;
-
-
-
-        }
-        public void shiftRight()
-        {
-            char temp = alphabet[alphabet.Length-1];
-            char hold = '\0';
-            for (int i = alphabet.Length-1; i >  0; i--)
-            {
-                alphabet[i] = alphabet[i-1 ];
-            }
-            alphabet[0] = temp;
+            ringShift[ringShift.Length-1] = temp;
 
 
 
@@ -126,29 +114,33 @@ namespace Enigma
 
         public void displayAll()
         {
-            for (int i =0; i < alphabet.Length; i++)
-            {
-                Console.WriteLine(alphabet[i]);
-            }
+                Console.WriteLine(ringShift);
+            
         }
 
-        public char[] Alphabet
+        public int[] getRingShift
         {
-            get { return this.alphabet; }
+            get { return this.ringShift; }
         }
 
-        public int Find(char c)
+        public char scrambleLetter(char letter)
         {
-            for(int i=0; i < alphabet.Length; i++)
+           if(letter<'A' ||letter>'Z')
             {
-                char df = alphabet[i];
-                if (c == alphabet[i])
-                {
-                    return i;
-                }
+                return'+';
             }
 
-            return -1;
+            int letterIndex = letter - 'A';
+            
+            char newLetter = (char)((int)letter + ringShift[letterIndex]);
+            if (newLetter < 'A')
+            {
+                newLetter = (char)('Z' - ('A' - newLetter)+1); 
+            }else if (newLetter > 'Z')
+            {
+                newLetter = (char)('A' + (newLetter - 'Z')-1);
+            }
+            return newLetter;
         }
     }
 }
