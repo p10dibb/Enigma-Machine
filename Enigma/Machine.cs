@@ -10,7 +10,7 @@ namespace Enigma
     {
         Rotors rotor = new Rotors();
         PlugBoard plugBoard = new PlugBoard();
-        
+        string rotorKey = "";
         public Machine()
         {
            
@@ -20,21 +20,42 @@ namespace Enigma
         {
             plugBoard.setPlugs(plugSwaps);
             rotor.setRotorSetting(rotorShifts);
+            rotorKey = rotorShifts;
         }
     
         public void resetMachine()
         {
+            resetRotors();
+            resetPlugBoard();
+        }
+
+        public void resetRotors()
+        {
+            if (rotorKey == "")
+            {
+                resetDefaultRotor();
+            }
+            rotor.setRotorSetting(rotorKey);
+        }
+
+        public void resetDefaultRotor()
+        {
             rotor = new Rotors();
+
+        }
+
+        public void resetPlugBoard()
+        {
             plugBoard = new PlugBoard();
         }
 
-        public char encryptLetter(char letter)
+        private char encryptLetter(char letter)
         {
             char newLetter = plugBoard.swapLetter(letter);
 
-            newLetter = rotor.scrambleLetter(newLetter);
+            newLetter = rotor.encryptLetter(newLetter);
 
-            plugBoard.swapLetter(newLetter);
+            newLetter=plugBoard.swapLetter(newLetter);
 
             return newLetter;
         }
@@ -56,9 +77,39 @@ namespace Enigma
                     output = output + encryptLetter(message[i]);
                 }
             }
-
+            this.resetRotors();
             return output;
         }
+
+        private char decryptLetter(char letter)
+        {
+            char newLetter = plugBoard.swapLetter(letter);
+
+            newLetter = rotor.decryptLetter(newLetter);
+
+            newLetter=plugBoard.swapLetter(newLetter);
+            return newLetter;
+        }
+
+        public string decryptMessage(string message)
+        {
+            string output = "";
+
+            for (int i = 0; i < message.Length; i++)
+            {
+                if (message[i] < 'A' || message[i] > 'Z')
+                {
+                    output = output + message[i];
+                }
+                else
+                {
+                    output = output + decryptLetter(message[i]);
+                }
+            }
+            this.resetRotors();
+            return output;
+        }
+
     }
 
 }

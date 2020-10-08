@@ -29,20 +29,12 @@
         private void InitializeComponent()
         {
             this.Encrypt_Button = new System.Windows.Forms.Button();
-            this.Phrase_Input_E = new System.Windows.Forms.TextBox();
+            this.Phrase_Input = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.Phrase_Input_D = new System.Windows.Forms.TextBox();
+            this.Output_Text = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.Ring_Input_E = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.key_Input_E = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.Rottor_Input_E = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.Plug_Input_E = new System.Windows.Forms.TextBox();
+            this.Ring_Input = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.buttonA = new System.Windows.Forms.Button();
             this.buttonB = new System.Windows.Forms.Button();
             this.buttonC = new System.Windows.Forms.Button();
@@ -72,11 +64,12 @@
             this.buttonResetPlugs = new System.Windows.Forms.Button();
             this.CombosTextBox = new System.Windows.Forms.TextBox();
             this.CombosLable = new System.Windows.Forms.Label();
+            this.Decrypt_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Encrypt_Button
             // 
-            this.Encrypt_Button.Location = new System.Drawing.Point(146, 391);
+            this.Encrypt_Button.Location = new System.Drawing.Point(23, 46);
             this.Encrypt_Button.Margin = new System.Windows.Forms.Padding(1);
             this.Encrypt_Button.Name = "Encrypt_Button";
             this.Encrypt_Button.Size = new System.Drawing.Size(135, 38);
@@ -85,15 +78,15 @@
             this.Encrypt_Button.UseVisualStyleBackColor = true;
             this.Encrypt_Button.Click += new System.EventHandler(this.Encrypt_Button_Click);
             // 
-            // Phrase_Input_E
+            // Phrase_Input
             // 
-            this.Phrase_Input_E.Location = new System.Drawing.Point(64, 10);
-            this.Phrase_Input_E.Margin = new System.Windows.Forms.Padding(1);
-            this.Phrase_Input_E.Name = "Phrase_Input_E";
-            this.Phrase_Input_E.Size = new System.Drawing.Size(363, 20);
-            this.Phrase_Input_E.TabIndex = 2;
-            this.Phrase_Input_E.Text = "HELLO WORL";
-            this.Phrase_Input_E.TextChanged += new System.EventHandler(this.Phrase_Input_E_TextChanged);
+            this.Phrase_Input.Location = new System.Drawing.Point(64, 10);
+            this.Phrase_Input.Margin = new System.Windows.Forms.Padding(1);
+            this.Phrase_Input.Name = "Phrase_Input";
+            this.Phrase_Input.Size = new System.Drawing.Size(363, 20);
+            this.Phrase_Input.TabIndex = 2;
+            this.Phrase_Input.Text = "HELLO WORLD";
+            this.Phrase_Input.TextChanged += new System.EventHandler(this.Phrase_Input_E_TextChanged);
             // 
             // textBox2
             // 
@@ -105,17 +98,17 @@
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "phrase";
             // 
-            // Phrase_Input_D
+            // Output_Text
             // 
-            this.Phrase_Input_D.Location = new System.Drawing.Point(43, 431);
-            this.Phrase_Input_D.Margin = new System.Windows.Forms.Padding(1);
-            this.Phrase_Input_D.Name = "Phrase_Input_D";
-            this.Phrase_Input_D.Size = new System.Drawing.Size(384, 20);
-            this.Phrase_Input_D.TabIndex = 4;
+            this.Output_Text.Location = new System.Drawing.Point(44, 322);
+            this.Output_Text.Margin = new System.Windows.Forms.Padding(1);
+            this.Output_Text.Name = "Output_Text";
+            this.Output_Text.Size = new System.Drawing.Size(384, 20);
+            this.Output_Text.TabIndex = 4;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(22, 217);
+            this.textBox5.Location = new System.Drawing.Point(23, 108);
             this.textBox5.Margin = new System.Windows.Forms.Padding(1);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -123,75 +116,18 @@
             this.textBox5.TabIndex = 7;
             this.textBox5.Text = "Ring Setting";
             // 
-            // Ring_Input_E
+            // Ring_Input
             // 
-            this.Ring_Input_E.Location = new System.Drawing.Point(98, 217);
-            this.Ring_Input_E.Margin = new System.Windows.Forms.Padding(1);
-            this.Ring_Input_E.Name = "Ring_Input_E";
-            this.Ring_Input_E.Size = new System.Drawing.Size(329, 20);
-            this.Ring_Input_E.TabIndex = 6;
-            this.Ring_Input_E.Text = "AAA";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(463, 139);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(1);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(69, 20);
-            this.textBox7.TabIndex = 9;
-            this.textBox7.Text = "Key Setting";
-            // 
-            // key_Input_E
-            // 
-            this.key_Input_E.Location = new System.Drawing.Point(539, 139);
-            this.key_Input_E.Margin = new System.Windows.Forms.Padding(1);
-            this.key_Input_E.Name = "key_Input_E";
-            this.key_Input_E.Size = new System.Drawing.Size(49, 20);
-            this.key_Input_E.TabIndex = 8;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(463, 168);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(1);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(71, 20);
-            this.textBox6.TabIndex = 11;
-            this.textBox6.Text = "Rottor Amount";
-            // 
-            // Rottor_Input_E
-            // 
-            this.Rottor_Input_E.Location = new System.Drawing.Point(539, 168);
-            this.Rottor_Input_E.Margin = new System.Windows.Forms.Padding(1);
-            this.Rottor_Input_E.Name = "Rottor_Input_E";
-            this.Rottor_Input_E.Size = new System.Drawing.Size(49, 20);
-            this.Rottor_Input_E.TabIndex = 10;
-            this.Rottor_Input_E.Text = "3";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(609, 64);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(1);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(69, 20);
-            this.textBox8.TabIndex = 13;
-            this.textBox8.Text = "Plug Setting";
-            // 
-            // Plug_Input_E
-            // 
-            this.Plug_Input_E.Location = new System.Drawing.Point(685, 64);
-            this.Plug_Input_E.Margin = new System.Windows.Forms.Padding(1);
-            this.Plug_Input_E.Multiline = true;
-            this.Plug_Input_E.Name = "Plug_Input_E";
-            this.Plug_Input_E.Size = new System.Drawing.Size(132, 18);
-            this.Plug_Input_E.TabIndex = 12;
-            this.Plug_Input_E.Text = "JN MC DY GS KA EF IW PR HB XU QV TL OZ ";
+            this.Ring_Input.Location = new System.Drawing.Point(99, 108);
+            this.Ring_Input.Margin = new System.Windows.Forms.Padding(1);
+            this.Ring_Input.Name = "Ring_Input";
+            this.Ring_Input.Size = new System.Drawing.Size(329, 20);
+            this.Ring_Input.TabIndex = 6;
+            this.Ring_Input.Text = "AAA";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 431);
+            this.textBox1.Location = new System.Drawing.Point(5, 322);
             this.textBox1.Margin = new System.Windows.Forms.Padding(1);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -199,31 +135,9 @@
             this.textBox1.TabIndex = 23;
             this.textBox1.Text = "Output";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(539, 231);
-            this.button1.Margin = new System.Windows.Forms.Padding(1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 22);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "rand data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(695, 195);
-            this.button2.Margin = new System.Windows.Forms.Padding(1);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 22);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "clear all";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
             // buttonA
             // 
-            this.buttonA.Location = new System.Drawing.Point(22, 299);
+            this.buttonA.Location = new System.Drawing.Point(23, 190);
             this.buttonA.Name = "buttonA";
             this.buttonA.Size = new System.Drawing.Size(25, 23);
             this.buttonA.TabIndex = 28;
@@ -233,7 +147,7 @@
             // 
             // buttonB
             // 
-            this.buttonB.Location = new System.Drawing.Point(53, 299);
+            this.buttonB.Location = new System.Drawing.Point(54, 190);
             this.buttonB.Name = "buttonB";
             this.buttonB.Size = new System.Drawing.Size(25, 23);
             this.buttonB.TabIndex = 29;
@@ -243,7 +157,7 @@
             // 
             // buttonC
             // 
-            this.buttonC.Location = new System.Drawing.Point(84, 299);
+            this.buttonC.Location = new System.Drawing.Point(85, 190);
             this.buttonC.Name = "buttonC";
             this.buttonC.Size = new System.Drawing.Size(25, 23);
             this.buttonC.TabIndex = 30;
@@ -253,7 +167,7 @@
             // 
             // buttonD
             // 
-            this.buttonD.Location = new System.Drawing.Point(115, 299);
+            this.buttonD.Location = new System.Drawing.Point(116, 190);
             this.buttonD.Name = "buttonD";
             this.buttonD.Size = new System.Drawing.Size(25, 23);
             this.buttonD.TabIndex = 31;
@@ -263,7 +177,7 @@
             // 
             // buttonF
             // 
-            this.buttonF.Location = new System.Drawing.Point(177, 299);
+            this.buttonF.Location = new System.Drawing.Point(178, 190);
             this.buttonF.Name = "buttonF";
             this.buttonF.Size = new System.Drawing.Size(25, 23);
             this.buttonF.TabIndex = 32;
@@ -273,7 +187,7 @@
             // 
             // buttonG
             // 
-            this.buttonG.Location = new System.Drawing.Point(208, 299);
+            this.buttonG.Location = new System.Drawing.Point(209, 190);
             this.buttonG.Name = "buttonG";
             this.buttonG.Size = new System.Drawing.Size(25, 23);
             this.buttonG.TabIndex = 33;
@@ -283,7 +197,7 @@
             // 
             // buttonH
             // 
-            this.buttonH.Location = new System.Drawing.Point(239, 299);
+            this.buttonH.Location = new System.Drawing.Point(240, 190);
             this.buttonH.Name = "buttonH";
             this.buttonH.Size = new System.Drawing.Size(25, 23);
             this.buttonH.TabIndex = 34;
@@ -293,7 +207,7 @@
             // 
             // buttonI
             // 
-            this.buttonI.Location = new System.Drawing.Point(270, 299);
+            this.buttonI.Location = new System.Drawing.Point(271, 190);
             this.buttonI.Name = "buttonI";
             this.buttonI.Size = new System.Drawing.Size(25, 23);
             this.buttonI.TabIndex = 35;
@@ -303,7 +217,7 @@
             // 
             // buttonE
             // 
-            this.buttonE.Location = new System.Drawing.Point(146, 299);
+            this.buttonE.Location = new System.Drawing.Point(147, 190);
             this.buttonE.Name = "buttonE";
             this.buttonE.Size = new System.Drawing.Size(25, 23);
             this.buttonE.TabIndex = 36;
@@ -313,7 +227,7 @@
             // 
             // buttonM
             // 
-            this.buttonM.Location = new System.Drawing.Point(394, 299);
+            this.buttonM.Location = new System.Drawing.Point(395, 190);
             this.buttonM.Name = "buttonM";
             this.buttonM.Size = new System.Drawing.Size(25, 23);
             this.buttonM.TabIndex = 40;
@@ -323,7 +237,7 @@
             // 
             // buttonL
             // 
-            this.buttonL.Location = new System.Drawing.Point(363, 299);
+            this.buttonL.Location = new System.Drawing.Point(364, 190);
             this.buttonL.Name = "buttonL";
             this.buttonL.Size = new System.Drawing.Size(25, 23);
             this.buttonL.TabIndex = 39;
@@ -333,7 +247,7 @@
             // 
             // buttonK
             // 
-            this.buttonK.Location = new System.Drawing.Point(332, 299);
+            this.buttonK.Location = new System.Drawing.Point(333, 190);
             this.buttonK.Name = "buttonK";
             this.buttonK.Size = new System.Drawing.Size(25, 23);
             this.buttonK.TabIndex = 38;
@@ -343,7 +257,7 @@
             // 
             // buttonJ
             // 
-            this.buttonJ.Location = new System.Drawing.Point(301, 299);
+            this.buttonJ.Location = new System.Drawing.Point(302, 190);
             this.buttonJ.Name = "buttonJ";
             this.buttonJ.Size = new System.Drawing.Size(25, 23);
             this.buttonJ.TabIndex = 37;
@@ -353,7 +267,7 @@
             // 
             // buttonZ
             // 
-            this.buttonZ.Location = new System.Drawing.Point(394, 328);
+            this.buttonZ.Location = new System.Drawing.Point(395, 219);
             this.buttonZ.Name = "buttonZ";
             this.buttonZ.Size = new System.Drawing.Size(25, 23);
             this.buttonZ.TabIndex = 53;
@@ -363,7 +277,7 @@
             // 
             // buttonY
             // 
-            this.buttonY.Location = new System.Drawing.Point(363, 328);
+            this.buttonY.Location = new System.Drawing.Point(364, 219);
             this.buttonY.Name = "buttonY";
             this.buttonY.Size = new System.Drawing.Size(25, 23);
             this.buttonY.TabIndex = 52;
@@ -373,7 +287,7 @@
             // 
             // buttonX
             // 
-            this.buttonX.Location = new System.Drawing.Point(332, 328);
+            this.buttonX.Location = new System.Drawing.Point(333, 219);
             this.buttonX.Name = "buttonX";
             this.buttonX.Size = new System.Drawing.Size(25, 23);
             this.buttonX.TabIndex = 51;
@@ -383,7 +297,7 @@
             // 
             // buttonW
             // 
-            this.buttonW.Location = new System.Drawing.Point(301, 328);
+            this.buttonW.Location = new System.Drawing.Point(302, 219);
             this.buttonW.Name = "buttonW";
             this.buttonW.Size = new System.Drawing.Size(25, 23);
             this.buttonW.TabIndex = 50;
@@ -393,7 +307,7 @@
             // 
             // buttonR
             // 
-            this.buttonR.Location = new System.Drawing.Point(146, 328);
+            this.buttonR.Location = new System.Drawing.Point(147, 219);
             this.buttonR.Name = "buttonR";
             this.buttonR.Size = new System.Drawing.Size(25, 23);
             this.buttonR.TabIndex = 49;
@@ -403,7 +317,7 @@
             // 
             // buttonV
             // 
-            this.buttonV.Location = new System.Drawing.Point(270, 328);
+            this.buttonV.Location = new System.Drawing.Point(271, 219);
             this.buttonV.Name = "buttonV";
             this.buttonV.Size = new System.Drawing.Size(25, 23);
             this.buttonV.TabIndex = 48;
@@ -413,7 +327,7 @@
             // 
             // buttonU
             // 
-            this.buttonU.Location = new System.Drawing.Point(239, 328);
+            this.buttonU.Location = new System.Drawing.Point(240, 219);
             this.buttonU.Name = "buttonU";
             this.buttonU.Size = new System.Drawing.Size(25, 23);
             this.buttonU.TabIndex = 47;
@@ -423,7 +337,7 @@
             // 
             // buttonT
             // 
-            this.buttonT.Location = new System.Drawing.Point(208, 328);
+            this.buttonT.Location = new System.Drawing.Point(209, 219);
             this.buttonT.Name = "buttonT";
             this.buttonT.Size = new System.Drawing.Size(25, 23);
             this.buttonT.TabIndex = 46;
@@ -433,7 +347,7 @@
             // 
             // buttonS
             // 
-            this.buttonS.Location = new System.Drawing.Point(177, 328);
+            this.buttonS.Location = new System.Drawing.Point(178, 219);
             this.buttonS.Name = "buttonS";
             this.buttonS.Size = new System.Drawing.Size(25, 23);
             this.buttonS.TabIndex = 45;
@@ -443,7 +357,7 @@
             // 
             // buttonQ
             // 
-            this.buttonQ.Location = new System.Drawing.Point(115, 328);
+            this.buttonQ.Location = new System.Drawing.Point(116, 219);
             this.buttonQ.Name = "buttonQ";
             this.buttonQ.Size = new System.Drawing.Size(25, 23);
             this.buttonQ.TabIndex = 44;
@@ -453,7 +367,7 @@
             // 
             // buttonP
             // 
-            this.buttonP.Location = new System.Drawing.Point(84, 328);
+            this.buttonP.Location = new System.Drawing.Point(85, 219);
             this.buttonP.Name = "buttonP";
             this.buttonP.Size = new System.Drawing.Size(25, 23);
             this.buttonP.TabIndex = 43;
@@ -463,7 +377,7 @@
             // 
             // buttonO
             // 
-            this.buttonO.Location = new System.Drawing.Point(53, 328);
+            this.buttonO.Location = new System.Drawing.Point(54, 219);
             this.buttonO.Name = "buttonO";
             this.buttonO.Size = new System.Drawing.Size(25, 23);
             this.buttonO.TabIndex = 42;
@@ -473,7 +387,7 @@
             // 
             // buttonN
             // 
-            this.buttonN.Location = new System.Drawing.Point(22, 328);
+            this.buttonN.Location = new System.Drawing.Point(23, 219);
             this.buttonN.Name = "buttonN";
             this.buttonN.Size = new System.Drawing.Size(25, 23);
             this.buttonN.TabIndex = 41;
@@ -483,7 +397,7 @@
             // 
             // buttonResetPlugs
             // 
-            this.buttonResetPlugs.Location = new System.Drawing.Point(22, 261);
+            this.buttonResetPlugs.Location = new System.Drawing.Point(23, 152);
             this.buttonResetPlugs.Name = "buttonResetPlugs";
             this.buttonResetPlugs.Size = new System.Drawing.Size(397, 23);
             this.buttonResetPlugs.TabIndex = 54;
@@ -494,7 +408,7 @@
             // CombosTextBox
             // 
             this.CombosTextBox.Enabled = false;
-            this.CombosTextBox.Location = new System.Drawing.Point(53, 367);
+            this.CombosTextBox.Location = new System.Drawing.Point(54, 258);
             this.CombosTextBox.Name = "CombosTextBox";
             this.CombosTextBox.Size = new System.Drawing.Size(374, 20);
             this.CombosTextBox.TabIndex = 55;
@@ -503,17 +417,29 @@
             // CombosLable
             // 
             this.CombosLable.AutoSize = true;
-            this.CombosLable.Location = new System.Drawing.Point(2, 370);
+            this.CombosLable.Location = new System.Drawing.Point(3, 261);
             this.CombosLable.Name = "CombosLable";
             this.CombosLable.Size = new System.Drawing.Size(45, 13);
             this.CombosLable.TabIndex = 56;
             this.CombosLable.Text = "Combos";
             // 
+            // Decrypt_button
+            // 
+            this.Decrypt_button.Location = new System.Drawing.Point(240, 46);
+            this.Decrypt_button.Margin = new System.Windows.Forms.Padding(1);
+            this.Decrypt_button.Name = "Decrypt_button";
+            this.Decrypt_button.Size = new System.Drawing.Size(135, 38);
+            this.Decrypt_button.TabIndex = 57;
+            this.Decrypt_button.Text = "Decrypt";
+            this.Decrypt_button.UseVisualStyleBackColor = true;
+            this.Decrypt_button.Click += new System.EventHandler(this.Decrypt_button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 550);
+            this.ClientSize = new System.Drawing.Size(482, 362);
+            this.Controls.Add(this.Decrypt_button);
             this.Controls.Add(this.CombosLable);
             this.Controls.Add(this.CombosTextBox);
             this.Controls.Add(this.buttonResetPlugs);
@@ -543,20 +469,12 @@
             this.Controls.Add(this.buttonC);
             this.Controls.Add(this.buttonB);
             this.Controls.Add(this.buttonA);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.Plug_Input_E);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.Rottor_Input_E);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.key_Input_E);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.Ring_Input_E);
-            this.Controls.Add(this.Phrase_Input_D);
+            this.Controls.Add(this.Ring_Input);
+            this.Controls.Add(this.Output_Text);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.Phrase_Input_E);
+            this.Controls.Add(this.Phrase_Input);
             this.Controls.Add(this.Encrypt_Button);
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
@@ -570,20 +488,12 @@
         #endregion
 
         private System.Windows.Forms.Button Encrypt_Button;
-        private System.Windows.Forms.TextBox Phrase_Input_E;
+        private System.Windows.Forms.TextBox Phrase_Input;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox Phrase_Input_D;
+        private System.Windows.Forms.TextBox Output_Text;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox Ring_Input_E;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox key_Input_E;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox Rottor_Input_E;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox Plug_Input_E;
+        private System.Windows.Forms.TextBox Ring_Input;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonA;
         private System.Windows.Forms.Button buttonB;
         private System.Windows.Forms.Button buttonC;
@@ -613,6 +523,7 @@
         private System.Windows.Forms.Button buttonResetPlugs;
         private System.Windows.Forms.TextBox CombosTextBox;
         private System.Windows.Forms.Label CombosLable;
+        private System.Windows.Forms.Button Decrypt_button;
     }
 }
 

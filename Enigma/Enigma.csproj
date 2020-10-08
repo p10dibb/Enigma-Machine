@@ -50,6 +50,7 @@
     <Compile Include="Ring.cs" />
     <Compile Include="Rotors.cs" />
     <Compile Include="StringGenerator.cs" />
+    <Compile Include="Tester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

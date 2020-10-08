@@ -37,8 +37,12 @@ namespace Enigma
             {
                 if (combos[i].Length == 2)
                 {
-                    boardSwaps[combos[i][0]] = boardSwaps[combos[i][1]];
-                    boardSwaps[combos[i][1]] = boardSwaps[combos[i][0]];
+                    char letter1= combos[i][0];
+                    char letter2 = combos[i][1];
+                    boardSwaps[letter2] = letter1;
+
+                    boardSwaps[letter1] = letter2;
+
                 }
             }
 

@@ -11,11 +11,24 @@ namespace Enigma
         static void Main(string[] args)
         {
 
-            Machine m = new Machine("RS TU VW YZ LX MK JI HG EF QP CD ON AB", "ADS");
+            //Machine m = new Machine("RS TU VW YZ LX MK JI HG EF QP CD ON AB", "ADS");
 
-            Console.WriteLine(m.encryptMessage("HELLOWorld"));
+            //Console.WriteLine(m.encryptMessage("Hello"));
+            //Console.WriteLine(m.decryptMessage("GBWXN"));
+
+
+
+            Tester t = new Tester();
+            t.testMachine();
+            //t.testPlugBoard();
+            //t.testRotors();
+            //t.testRing();
+
+
 
             while (true) ;
         }
+
+     
     }
 }

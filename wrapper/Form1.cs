@@ -29,39 +29,16 @@ namespace wrapper
 
         private void Encrypt_Button_Click(object sender, EventArgs e)
         {
-            m = new Machine(this.key_Input_E.Text,this.Rottor_Input_E.Text,Ring_Input_E.Text,this.CombosTextBox.Text);
+            m = new Machine(CombosTextBox.Text, Ring_Input.Text);
 
-
-            if (Phrase_Input_E.Text.Equals(""))
-            {
-                this.Phrase_Input_E.Text = m.decrypt(this.Phrase_Input_D.Text);
-            }
-            else
-            {
-                this.Phrase_Input_D.Text = m.encrypt(this.Phrase_Input_E.Text);
-            }
-            
-
+           Output_Text.Text= m.encryptMessage(Phrase_Input.Text);
         }
 
       
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            string s = m.Generate_PlugBoard();
-      
-            this.Plug_Input_E.Text = s;
-
-            if (!Rottor_Input_E.Text.Equals(""))
-            {
-                s = m.Generate_RingSetting(Rottor_Input_E.Text);
-           
-                this.Ring_Input_E.Text = s;
-            }
-            else
-            {
-                this.Ring_Input_E.Text = "AAA";
-            }
+     
           
 
         }
@@ -73,12 +50,9 @@ namespace wrapper
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            this.key_Input_E.Text = "";
-            this.Phrase_Input_D.Text = "";
-            this.Phrase_Input_E.Text = "";
-            this.Rottor_Input_E.Text = "";
-            this.Ring_Input_E.Text = "";
-            this.Plug_Input_E.Text = "";
+            this.Output_Text.Text = "";
+            this.Phrase_Input.Text = "";
+            this.Ring_Input.Text = "";
         }
 
         private void buttonResetPlugs_Click(object sender, EventArgs e)
@@ -440,6 +414,13 @@ namespace wrapper
         private void CombosTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Decrypt_button_Click(object sender, EventArgs e)
+        {
+            m = new Machine(CombosTextBox.Text, Ring_Input.Text);
+
+            Output_Text.Text = m.decryptMessage(Phrase_Input.Text);
         }
     }
 }
