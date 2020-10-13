@@ -10,12 +10,10 @@ namespace Enigma
     {
         static void Main(string[] args)
         {
+            StringGenerator s = new StringGenerator();
 
-            //Machine m = new Machine("RS TU VW YZ LX MK JI HG EF QP CD ON AB", "ADS");
-
-            //Console.WriteLine(m.encryptMessage("Hello"));
-            //Console.WriteLine(m.decryptMessage("GBWXN"));
-
+            Console.WriteLine(s.CalculateRingShift("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
+            
 
 
             Tester t = new Tester();

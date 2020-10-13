@@ -11,10 +11,15 @@ namespace Enigma
 
         public void testMachine()
         {
-            Machine m = new Machine("RS TU VW YZ LX MK JI HG EF QP CD ON AB", "ABC");
+            //"RS TU VW YZ LX MK JI HG EF QP CD ON AB"
+            Machine m = new Machine("", "AAA");
 
-            Console.WriteLine(m.encryptMessage("Hello"));
-            Console.WriteLine(m.decryptMessage("MZUFH"));
+            Console.WriteLine(m.encryptMessage("HELLO"));
+            m = new Machine("", "AAA");
+
+            Console.WriteLine(m.encryptMessage("MFNCZ"));
+
+            //Console.WriteLine(m.encryptMessage("V"));
 
         }
 

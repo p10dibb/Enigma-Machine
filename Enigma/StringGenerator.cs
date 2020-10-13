@@ -63,5 +63,29 @@ namespace Enigma
             return newString;
         }
 
+        public string CalculateRingShift(string shiftAlphabet) {
+            int alphabetLength = 26;
+            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string shiftstring = "";
+            if (shiftAlphabet.Length != alphabetLength)
+            {
+                return "Invalid Shift String";
+            }
+
+            for(int i=0; i < alphabetLength; i++)
+            {
+                shiftstring = shiftstring + (shiftAlphabet[i] - alphabet[i]);
+                              
+                if (i < alphabetLength - 1)
+                {
+                    shiftstring = shiftstring + ',';
+                }
+            }          
+
+
+            return shiftstring;
+        
+        }
+
     }
 }

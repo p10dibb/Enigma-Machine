@@ -13,7 +13,8 @@ namespace Enigma
         char[] currentLetterOrder = new char[AlphabetLength];
         Dictionary<char, char> scramble = new Dictionary<char, char>();
         Dictionary<char, char> unScramble = new Dictionary<char, char>();
-
+        char[] forwards = new  char[26];
+        char[] backwards = new char[26];
 
         public Ring()
         {
@@ -91,6 +92,7 @@ namespace Enigma
                     used[i + this.shiftValue[i]] = true;
                 }
             }
+            this.calculateOutputsInitial();
             return "success";
         }
         private void SetRingDefault()
@@ -118,13 +120,52 @@ namespace Enigma
 
         public void rotate()
         {
-            char temp = currentLetterOrder[0];
-            for (int i = 0; i < currentLetterOrder.Length-1; i++)
+            char temp = backwards[0];
+            for (int i = 0; i < backwards.Length - 2; i++)
             {
-                currentLetterOrder[i] = currentLetterOrder[i + 1];
+                backwards[i] = backwards[i + 1];
             }
-            currentLetterOrder[currentLetterOrder.Length-1] = temp;
+            backwards[backwards.Length - 1] = temp;
+            backwards[0] = temp;
+
+             temp = forwards[0];
+            for (int i = 0; i < forwards.Length-2; i++)
+            {
+                forwards[i] = forwards[i + 1];
+            }
+            forwards[forwards.Length-1] = temp;
             calculateOutputs();
+        }
+
+        private void calculateOutputsInitial()
+        {
+            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for (int i = 0; i < 26; i++)
+            {
+                char currentLetter = alphabet[i];
+                char forwardletter = (char)(alphabet[i] + shiftValue[i]);
+
+                if (forwardletter > 'Z')
+                {
+                    int newShift = (forwardletter - 'Z');
+                    forwardletter = (char)('A' + newShift - 1);
+                }
+                else if (forwardletter < 'A')
+                {
+                    int newShift = 'A' - forwardletter;
+                    forwardletter = (char)('Z' - newShift + 1);
+                }
+
+                this.forwards[i] = forwardletter;
+                this.backwards[i] = currentLetter;
+                 this.scramble[currentLetter] = forwardletter;
+                this.unScramble[forwardletter] = currentLetter;               
+
+            }
+            for (int i = 0; i < 26; i++)
+            {
+                backwards[i] = unScramble[(char)('A' + i)];
+            }
         }
 
         private void calculateOutputs()
@@ -132,22 +173,10 @@ namespace Enigma
             for(int i=0; i < currentLetterOrder.Length; i++)
             {
                 char currentLetter = currentLetterOrder[i];
-                char scrambledLetter = (char)(currentLetterOrder[i] + shiftValue[i]);
-
-                if (scrambledLetter > 'Z')
-                {
-                    int newShift = (scrambledLetter - 'Z');
-                    scrambledLetter = (char)('A' + newShift-1);
-                }
-                else if (scrambledLetter < 'A')
-                {
-                    int newShift =  'A'-scrambledLetter;
-                    scrambledLetter = (char)('Z' - newShift+1);
-                }
-              
-
+                char scrambledLetter = forwards[i];
+                char backwardsLetter = backwards[i];
                 this.scramble[currentLetter] = scrambledLetter;
-                this.unScramble[scrambledLetter] = currentLetter;
+                this.unScramble[currentLetter] = backwardsLetter;
 
             }
         }
