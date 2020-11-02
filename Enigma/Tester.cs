@@ -12,12 +12,22 @@ namespace Enigma
         public void testMachine()
         {
             //"RS TU VW YZ LX MK JI HG EF QP CD ON AB"
-            Machine m = new Machine("", "AAA");
+            Machine m = new Machine("", "AAB");
+            Console.WriteLine(m.encryptMessage("A"));
+            Console.WriteLine(m.encryptMessage("T"));
 
-            Console.WriteLine(m.encryptMessage("HELLO"));
-            m = new Machine("", "AAA");
 
-            Console.WriteLine(m.encryptMessage("MFNCZ"));
+            //string message = "the swift red fox jumped over the sleeping brown dog";
+            //Console.WriteLine(m.encryptMessage("the swift red fox jumped over the sleeping brown dog"));
+
+            //m = new Machine("", "AAA");
+
+            //Console.WriteLine(m.encryptMessage("FTZMGISGIP"));
+            //m = new Machine("", "AAA");
+
+            //Console.WriteLine(m.encryptMessage("FTZMGISXIP"));
+
+
 
             //Console.WriteLine(m.encryptMessage("V"));
 

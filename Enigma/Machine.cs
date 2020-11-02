@@ -93,21 +93,8 @@ namespace Enigma
 
         public string decryptMessage(string message)
         {
-            string output = "";
-
-            for (int i = 0; i < message.Length; i++)
-            {
-                if (message[i] < 'A' || message[i] > 'Z')
-                {
-                    output = output + message[i];
-                }
-                else
-                {
-                    output = output + decryptLetter(message[i]);
-                }
-            }
-            this.resetRotors();
-            return output;
+            
+            return this.encryptMessage(message);
         }
 
     }

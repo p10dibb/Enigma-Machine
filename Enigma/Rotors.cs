@@ -8,7 +8,7 @@ namespace Enigma
     {
         const int ringAmount = 3;
         const int AlphabetLength = 26;
-
+        StringGenerator generator= new StringGenerator();
         private Ring[] rings = new Ring[ringAmount];
         private Ring reflector = new Ring();
         private string[] ringShifts = new string[ringAmount];
@@ -30,16 +30,15 @@ namespace Enigma
         }
 
         private void setRingShiftStrings()
-        {
+
+
+        {   //Reflector B YRUHQSLDPXNGOKMIEBFZCWVJAT
             reflectorString = "24,16,18,4,12,13,5,-4,7,14,3,-5,2,-3,-2,-7,-12,-16,-13,6,-18,1,-1,-14,-24,-6";
 
-            for (int i = 0; i < ringAmount; i++)
-            {
-                ringShifts[i] = "";
-            }
-            ringShifts[0] = "4,9,10,2,7,1,-3,9,13,16,3,8,2,9,10,-8,7,3,0,-4,-20,-13,-21,-6,-22,-16";
-            ringShifts[1] = "0,8,1,7,14,3,11,13,15,-8,1,-4,10,6,-2,-13,0,-11,7,-6,-5,3,-17,-2,-10,-21";
-            ringShifts[2] = "1,2,3,4,5,6,-4,8,9,10,13,10,13,0,10,-11,-8,5,-12,-19,-10,-9,-2,-5,-8,-11";
+         
+            ringShifts[0] = this.getRotor(1);
+            ringShifts[1] = this.getRotor(2);
+            ringShifts[2] = this.getRotor(3);
         }
 
         private void setRingShifts()
@@ -60,10 +59,14 @@ namespace Enigma
                 return "not a valid setting";
             }
 
-            for(int i = 0; i < ringAmount; i++)
+            for (int i = 0; i < rotorSetting.Length; i++)
             {
+
                 this.rings[i].setRingSetting(rotorSetting[i]);
+                this.ringRotations[i] = rotorSetting[i] - 'A';                   
+                    
             }
+
 
             return "success";
         }
@@ -78,20 +81,20 @@ namespace Enigma
             for (int i = 1; i < ringAmount; i++)
             {
 
-                newLetter = rings[i].scrambleLetter(wrapLetter((char)(newLetter-(ringRotations[i-1]))));
+                newLetter = rings[i].scrambleLetter(wrapLetter((char)(newLetter-(ringRotations[i-1] % 26))));
             }
 
-            newLetter = reflector.scrambleLetter(newLetter);
+            newLetter = reflector.scrambleLetter(wrapLetter((char)(newLetter - (ringRotations[ringAmount-1] % 26))));
             newLetter = rings[ringAmount - 1].unScrambleLetter(newLetter);
 
             for (int i = ringAmount - 2; i >= 0; i--)
             {
-                newLetter = rings[i].unScrambleLetter(wrapLetter((char)(newLetter - (ringRotations[i + 1]))));
+                newLetter = rings[i].unScrambleLetter(wrapLetter((char)(newLetter - (ringRotations[i + 1] % 26))));
             }
 
 
-            newLetter= (char)(newLetter - ringRotations[0]);
-      
+            newLetter = (char)(newLetter - ringRotations[0]%26);
+
             return wrapLetter(newLetter);
         }
 
@@ -148,6 +151,24 @@ namespace Enigma
             }
             rings[0].rotate();
             ringRotations[0]++;
+        }
+    
+        private string getRotor(int number)
+        {
+            switch (number)
+            {
+                // ROTOR I 	
+                case 1: return generator.CalculateRingShift("EKMFLGDQVZNTOWYHXUSPAIBRCJ");
+                //ROTOR II 	
+                case 2: return generator.CalculateRingShift("AJDKSIRUXBLHWTMCQGZNPYFVOE");
+                //Rotor III 
+                case 3: return generator.CalculateRingShift("BDFHJLCPRTXVZNYEIWGAKMUSQO");
+                //Rotor IV 	
+                case 4: return generator.CalculateRingShift("ESOVPZJAYQUIRHXLNFTGKDCMWB"); 
+                //Rotor V
+                case 5: return generator.CalculateRingShift("VZBRGITYUPSDNHLXAWMJQOFECK"); 
+                default:return "";
+            }
         }
     }
 }

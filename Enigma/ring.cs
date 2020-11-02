@@ -30,26 +30,45 @@ namespace Enigma
             calculateOutputs();
         }
 
-        public void setRingSetting(char key)
+       public int getForwardLetterIndex(char letter)
         {
-            if (key >= 'A' && key <= 'Z')
-            {
-                int total = 0;
-                while (key + total <= 'Z' && total<26)
+         for(int i = 0; i < this.forwards.Length; i++) {
+
+                if (forwards[i] == letter)
                 {
-                    currentLetterOrder[total] = (char)(key + total);
-                    total++;
-                }
-                int i = 0;
-                while (total < 26)
-                {
-                    currentLetterOrder[total] = (char)('A' + i);
-                    total++;
-                    i++;
+                    return i;
                 }
             }
-       
-            calculateOutputs();
+            return -1;
+        }
+
+        public int setRingSetting(char key)
+        {
+            //if (key >= 'A' && key <= 'Z')
+            //{
+            //    int total = 0;
+            //    while (key + total <= 'Z' && total<26)
+            //    {
+            //        currentLetterOrder[total] = (char)(key + total);
+            //        total++;
+            //    }
+            //    int i = 0;
+            //    while (total < 26)
+            //    {
+            //        currentLetterOrder[total] = (char)('A' + i);
+            //        total++;
+            //        i++;
+            //    }
+            //}
+
+            for(int i=0; i < key - 'A'; i++)
+            {
+                this.rotate();
+            }
+
+            //calculateOutputs();
+
+            return 0;
 
         }
 
@@ -121,15 +140,14 @@ namespace Enigma
         public void rotate()
         {
             char temp = backwards[0];
-            for (int i = 0; i < backwards.Length - 2; i++)
+            for (int i = 0; i < backwards.Length - 1; i++)
             {
                 backwards[i] = backwards[i + 1];
             }
             backwards[backwards.Length - 1] = temp;
-            backwards[0] = temp;
 
              temp = forwards[0];
-            for (int i = 0; i < forwards.Length-2; i++)
+            for (int i = 0; i < forwards.Length-1; i++)
             {
                 forwards[i] = forwards[i + 1];
             }

@@ -12,8 +12,7 @@ namespace Enigma
         {
             StringGenerator s = new StringGenerator();
 
-            Console.WriteLine(s.CalculateRingShift("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
-            
+
 
 
             Tester t = new Tester();
