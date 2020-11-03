@@ -44,29 +44,12 @@ namespace Enigma
 
         public int setRingSetting(char key)
         {
-            //if (key >= 'A' && key <= 'Z')
-            //{
-            //    int total = 0;
-            //    while (key + total <= 'Z' && total<26)
-            //    {
-            //        currentLetterOrder[total] = (char)(key + total);
-            //        total++;
-            //    }
-            //    int i = 0;
-            //    while (total < 26)
-            //    {
-            //        currentLetterOrder[total] = (char)('A' + i);
-            //        total++;
-            //        i++;
-            //    }
-            //}
-
+  
             for(int i=0; i < key - 'A'; i++)
             {
                 this.rotate();
             }
 
-            //calculateOutputs();
 
             return 0;
 

@@ -15,6 +15,9 @@ namespace wrapper
         public Machine m=new Machine();
         public char selectedPlug1 = '\0';
         public char selectedPlug2 = '\0';
+        public string selectedRotors = "";
+        public string selectedRotorsDisplayed = "";
+        public int selectedRotorAmt = 0;
 
 
         public Form1()
@@ -29,7 +32,14 @@ namespace wrapper
 
         private void Encrypt_Button_Click(object sender, EventArgs e)
         {
-            m = new Machine(CombosTextBox.Text, Ring_Input.Text);
+            if (this.selectedRotors.Length != 3)
+            {
+                this.selectedRotors = "123";
+                this.selectedRotorsDisplayed = "I II III";
+                this.SelectedRings.Text = this.selectedRotorsDisplayed;
+            }
+
+            m = new Machine(CombosTextBox.Text, Ring_Input.Text,this.selectedRotors);
 
            Output_Text.Text= m.encryptMessage(Phrase_Input.Text);
         }
@@ -418,9 +428,99 @@ namespace wrapper
 
         private void Decrypt_button_Click(object sender, EventArgs e)
         {
-            m = new Machine(CombosTextBox.Text, Ring_Input.Text);
+            if (this.selectedRotors.Length != 3)
+            {
+                this.selectedRotors = "123";
+                this.selectedRotorsDisplayed = "I II III";
+                this.SelectedRings.Text = this.selectedRotorsDisplayed;
+            }
+            m = new Machine(CombosTextBox.Text, Ring_Input.Text,this.selectedRotors);
 
             Output_Text.Text = m.decryptMessage(Phrase_Input.Text);
+        }
+
+        private void enableAllRotorButtons()
+        {
+            this.RingI.Enabled = true;
+            this.RingII.Enabled = true;
+            this.RingIII.Enabled = true;
+            this.RingIV.Enabled = true;
+            this.RingV.Enabled = true;
+
+        }
+
+        private void disableAllRotorButtons()
+        {
+            this.RingI.Enabled = false;
+            this.RingII.Enabled = false;
+            this.RingIII.Enabled = false;
+            this.RingIV.Enabled = false;
+            this.RingV.Enabled = false;
+
+        }
+
+        private void incrimnentRotorSelection()
+        {
+            this.selectedRotorAmt += 1;
+            if (this.selectedRotorAmt >= 3)
+            {
+                this.disableAllRotorButtons();
+            }
+        }
+
+        private void ResetRotorSelection_Click(object sender, EventArgs e)
+        {
+            this.selectedRotorAmt = 0;
+            this.enableAllRotorButtons();
+            this.selectedRotors = "";
+            this.selectedRotorsDisplayed = "";
+            this.SelectedRings.Text = this.selectedRotorsDisplayed;
+        }
+
+        private void RingI_Click(object sender, EventArgs e)
+        {
+            this.RingI.Enabled = false;
+            this.selectedRotors = this.selectedRotors + "1";
+            this.selectedRotorsDisplayed = this.selectedRotorsDisplayed + " I";
+            this.SelectedRings.Text = this.selectedRotorsDisplayed;
+            this.incrimnentRotorSelection();
+        }
+
+        private void RingII_Click(object sender, EventArgs e)
+        {
+            this.RingII.Enabled = false;
+            this.selectedRotors = this.selectedRotors + "2";
+            this.selectedRotorsDisplayed = this.selectedRotorsDisplayed + " II";
+            this.incrimnentRotorSelection();
+            this.SelectedRings.Text = this.selectedRotorsDisplayed;
+        }
+
+        private void RingIII_Click(object sender, EventArgs e)
+        {
+            this.RingIII.Enabled = false;
+            this.selectedRotors = this.selectedRotors + "3";
+            this.selectedRotorsDisplayed = this.selectedRotorsDisplayed + " III";
+            this.incrimnentRotorSelection();
+            this.SelectedRings.Text = this.selectedRotorsDisplayed;
+
+        }
+
+        private void RingIV_Click(object sender, EventArgs e)
+        {
+            this.RingIV.Enabled = false;
+            this.selectedRotors = this.selectedRotors + "4";
+            this.selectedRotorsDisplayed = this.selectedRotorsDisplayed + " IV";
+            this.incrimnentRotorSelection();
+            this.SelectedRings.Text = this.selectedRotorsDisplayed;
+        }
+
+        private void RingV_Click(object sender, EventArgs e)
+        {
+            this.RingV.Enabled = false;
+            this.selectedRotors = this.selectedRotors + "5";
+            this.selectedRotorsDisplayed = this.selectedRotorsDisplayed + " V";
+            this.incrimnentRotorSelection();
+            this.SelectedRings.Text = this.selectedRotorsDisplayed;
         }
     }
 }

@@ -1,0 +1,17 @@
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.csprojAssemblyReference.cache
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.csproj.CoreCompileInputs.cache
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.AssemblyInfoInputs.cache
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.AssemblyInfo.cs
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Bombe_BruteForce.exe
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Bombe_BruteForce.deps.json
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Bombe_BruteForce.runtimeconfig.json
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Bombe_BruteForce.runtimeconfig.dev.json
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Bombe_BruteForce.dll
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Bombe_BruteForce.pdb
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Enigma.exe
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Enigma.pdb
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Enigma.exe.config
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.csproj.CopyComplete
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.dll
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.pdb
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.genruntimeconfig.cache

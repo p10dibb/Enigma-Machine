@@ -16,13 +16,19 @@ namespace Enigma
            
         }
 
-        public Machine(string plugSwaps,string rotorShifts)
+        public Machine(string plugSwaps,string rotorShifts,string rotorSelection)
         {
             plugBoard.setPlugs(plugSwaps);
-            rotor.setRotorSetting(rotorShifts);
+            rotor = new Rotors(rotorShifts, rotorSelection);
             rotorKey = rotorShifts;
         }
-    
+
+        public void setSettings(string plugSwaps, string rotorShifts, string rotorSelection)
+        {
+            plugBoard.setPlugs(plugSwaps);
+            rotor.setRotorSettings(rotorShifts, rotorSelection);
+            rotorKey = rotorShifts;
+        }
         public void resetMachine()
         {
             resetRotors();

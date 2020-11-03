@@ -12,7 +12,7 @@ namespace Enigma
         public void testMachine()
         {
             //"RS TU VW YZ LX MK JI HG EF QP CD ON AB"
-            Machine m = new Machine("", "AAB");
+            Machine m = new Machine("", "AAB","123");
             Console.WriteLine(m.encryptMessage("A"));
             Console.WriteLine(m.encryptMessage("T"));
 

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma", "Enigma\Enigma.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wrapper", "wrapper\wrapper.csproj", "{A5938EE8-B435-45DA-9D22-8C4AA5AD7A02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bombe_BruteForce", "Bombe_BruteForce\Bombe_BruteForce.csproj", "{43BE6D2E-342A-48BA-BEB0-0637848C7896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A5938EE8-B435-45DA-9D22-8C4AA5AD7A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5938EE8-B435-45DA-9D22-8C4AA5AD7A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5938EE8-B435-45DA-9D22-8C4AA5AD7A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43BE6D2E-342A-48BA-BEB0-0637848C7896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BE6D2E-342A-48BA-BEB0-0637848C7896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BE6D2E-342A-48BA-BEB0-0637848C7896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BE6D2E-342A-48BA-BEB0-0637848C7896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
