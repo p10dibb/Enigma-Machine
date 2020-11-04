@@ -83,7 +83,7 @@ namespace Enigma
                     output = output + encryptLetter(message[i]);
                 }
             }
-            this.resetRotors();
+            //this.resetRotors();
             return output;
         }
 
