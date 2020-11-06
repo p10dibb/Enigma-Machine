@@ -32,6 +32,7 @@ namespace Enigma
     
         public void setPlugs(string letterSwaps)
         {
+            this.setDefaultPlugs();
             string[] combos = letterSwaps.Split(' ');
             for (int i = 0; i < combos.Length;i++)
             {

@@ -16,6 +16,7 @@ namespace Bombe_BruteForce
         List<string> RottorSelectionOptions = new List<string>();
         List<string> RottorShiftOptions = new List<string>();
         Stopwatch stopwatch = new Stopwatch();
+        
 
         int count = 0;
 
@@ -144,6 +145,7 @@ namespace Bombe_BruteForce
             return "";
         }
     
+
         private void RunMachineShiftsAndSelections(string plugboard)
         {
 

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "HDO9PIGHRioejb8LyaaWX59VKxrYKVTIR+qNahHQ7UPuVidV2+sdr0BA1oAsh2/uDDyZtcwBccA2ipl+KIzjMw==",
+  "dgSpecHash": "HrsOiQLd8RGfKMFcUG7iCeYkNkhiC/I2jFf5rz1hTzg5k6+UJsZLTZwT7sW4Bir25wfHIlgxQh8wG0cv9TSNDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\pauld\\OneDrive\\Desktop\\Enigma-Machine\\Bombe_BruteForce\\Bombe_BruteForce.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\pauld\\.nuget\\packages\\npgsql\\4.1.5\\npgsql.4.1.5.nupkg.sha512",
+    "C:\\Users\\pauld\\.nuget\\packages\\stopwatch\\1.0.6\\stopwatch.1.0.6.nupkg.sha512",
+    "C:\\Users\\pauld\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
   "logs": []
 }

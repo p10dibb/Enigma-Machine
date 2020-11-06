@@ -9,11 +9,11 @@ namespace Bombe_BruteForce
             //Runner runner = new Runner();
             //runner.runner();
 
-            //Cracker cracker = new Cracker();
-            //cracker.runner();
+            Cracker cracker = new Cracker();
+            cracker.runner();
 
-            PermutationGenerator generator = new PermutationGenerator();
-            generator.runner();
+            //PermutationGenerator generator = new PermutationGenerator();
+            //generator.runner();
         }
     }
 }

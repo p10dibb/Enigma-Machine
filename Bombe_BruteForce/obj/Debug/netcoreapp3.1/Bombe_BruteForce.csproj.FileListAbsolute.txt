@@ -1,5 +1,4 @@
 C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.csprojAssemblyReference.cache
-C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.csproj.CoreCompileInputs.cache
 C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.AssemblyInfoInputs.cache
 C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.AssemblyInfo.cs
 C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Bombe_BruteForce.exe
@@ -15,3 +14,5 @@ C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcor
 C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.dll
 C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.pdb
 C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.genruntimeconfig.cache
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\bin\Debug\netcoreapp3.1\Npgsql.dll
+C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\obj\Debug\netcoreapp3.1\Bombe_BruteForce.csproj.CoreCompileInputs.cache

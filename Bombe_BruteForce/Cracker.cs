@@ -1,39 +1,122 @@
-﻿using System;
+﻿using Enigma;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Npgsql;
+using System.Diagnostics;
 
 namespace Bombe_BruteForce
 {
     class Cracker
     {
-
+        Machine enigma = new Machine();
+        string keySetting = "ZAC";
+        string rottorSetting = "531";
+        string plugSetting = "AG BF OP KU QT";
+        string garenteedWord = "GOODBYEWORLD";
         Dictionary<char, char> AD = new Dictionary<char, char>();
         Dictionary<char, char> BE = new Dictionary<char, char>();
         Dictionary<char, char> CF = new Dictionary<char, char>();
-
+        List<string> UnencryptedMessages = new List<string>();
+        List<string> EncryptedMessages = new List<string>();
+        NpgsqlConnection connection = new NpgsqlConnection();
+        List<setting> possibleSettings = new List<setting>();
+        Stopwatch stopwatch = new Stopwatch();
         //this.generatePermutationDict(message_key_encrypts);
+
+        int count = 0;
+
+        public Cracker()
+        {
+            connection = new NpgsqlConnection(buildConnectionString());
+            connection.Open();
+        }
+
+        private string buildConnectionString()
+        {
+            return "Server = localhost; Username = postgres; Password = 1234; Database = Enigma;";
+        }
+
 
         public void runner()
         {
-            List<string> message_key_encrypts = new List<string>(){"ESQWUQ", "WULGNP", "ZEVUMG", "COWNTR", "WLEGZX", "KFOPPO", "NEKFMZ", "XETJMD", "SQAISY", "UQGRSK", "YVMBOC", "JJMQHC", "DACZLS", "ZBXURF", "VZSDQE", "FLOMZO", "SRZIII", "CPGNKK", "FEGMMK", "VILDVP", "PDQLFQ", "SBGIRK", "EJHWHB", "JTYQGM", "TNLOYP", "XLMJZC", "FYKMDZ", "ZWAUBY", "OXGEAK", "BYDVDV", "YMCBCS", "JFQQPQ", "RQLSSP", "BWYVBM", "FRIMIL", "YLMBZC", "WJIGHL", "UMFRCH", "XMKJCZ", "HUFANH", "UTNRGJ", "VCXDWF", "VZUDQT", "EMBWCN", "KRRPIU", "SHBIEN", "RCVSWG", "BUUVNT", "ASNKUJ", "RAISLL", "XKRJXU", "KJNPHJ", "NDKFFZ", "NUQFNQ", "GZMHQC", "BMRVCU", "GMHHCB", "PSZLUI", "ZRAUIY", "AMHKCB", "IEDCMV", "TPGOKK", "VSADUY", "NSKFUZ", "EVTWOD", "OHHEEB", "CRSNIE", "IDUCFT", "UHBREN", "DYXZDF", "JYJQDA", "BTWVGR", "LRTXID", "WNPGYW", "SBSIRE", "KDFPFH", "FCOMWO", "WTFGGH", "WXHGAB", "VURDNU", "AAJKLA", "FIGMVK", "OKREXU", "FIKMVZ", "JPPQKW", "EXVWAG", "XFQJPQ", "GVFHOH", "NEUFMT", "UMDRCV", "EGWWJR", "XLEJZX", "CEWNMR", "QCGTWK", "KLZPZI", "WBZGRI", "YKEBXX", "TYNODJ", "OFYEPM", "UELRMP", "BJOVHO", "HLMAZC", "YVNBOJ", "NWYFBM", "ZYCUDS", "SSJIUA", "HFCAPS", "EZHWQB", "PYRLDU", "ONFEYH", "JJMQHC", "DJSZHE", "ROHSTB", "YLDBZV", "SOKITZ", "GRQHIQ", "JFCQPS", "DRKZIZ", "PMSLCE", "PXPLAW", "UBGRRK", "NRBFIN", "HCGAWK", "YQBBSN", "EQCWSS", "ABNKRJ", "VDXDFF", "OWLEBP", "HNSAYE", "KPYPKM", "UIRRVU", "KZIPQL", "OUFENH", "VGSDJE", "DHZZEI", "OJAEHY", "IMSCCE", "NZUFQT", "NGGFJK", "QPKTKZ", "RWVSBG", "MUDYNV"};
 
+            string message = "HELLOWORLD";
+            enigma.setSettings("", keySetting, rottorSetting);
+            string encryptedMessage = enigma.encryptMessage(message);
+            this.generateMessages(500);
 
-            //this.generateDictionaryKey(message_key_encrypts);
-            //this.printPermutationDict(CF);
+           string key= this.generateDictionaryKey(this.EncryptedMessages);
 
+            Console.WriteLine(key);
+            this.getOptionsfromDB(key);
 
-            //List<string> BECHAIN = this.makeChainsFromPermutatuinDict(BE);
+            Console.WriteLine(possibleSettings.Count);
+            foreach(setting s in possibleSettings)
+            {
 
-            //foreach (string a in BECHAIN)
-            //{
-            //    Console.WriteLine(a);
-            //}
+                Console.WriteLine("-------" + s.shiftsetting + "---" + s.ringsetting);
+                enigma.setSettings("", s.shiftsetting, s.ringsetting);
+                Console.WriteLine(enigma.decryptMessage(this.EncryptedMessages[0]));
+                enigma.setSettings("", s.shiftsetting, s.ringsetting);
+                Console.WriteLine(enigma.decryptMessage(this.EncryptedMessages[1]));
+                //stopwatch.Start();
+                //this.generatePlugComboOptions( s.ringsetting, s.shiftsetting);
 
-            Console.WriteLine(this.generateDictionaryKey(message_key_encrypts));
+            }
 
 
 
         }
+
+        private bool isGoodbyeWorldAtEnd(string message)
+        {
+            string check = "GOODBYEWORLD";
+
+            for(int i = 1; i <= check.Length; i++)
+            {
+                if (message[message.Length - i] != check[check.Length - i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool tryPlugs(setting currentSetting)
+        {
+            string encrypted = this.EncryptedMessages[0];
+
+            string garenteed = "GOODBYEWORLD";
+
+            return true;
+        }
+        
+
+        private void getOptionsfromDB(string key)
+        {
+            using (var cmd = new NpgsqlCommand())
+            {
+
+
+                cmd.Connection = connection;
+                //                            0         1           2           3            4         5         6      7         8            9       10
+                cmd.CommandText = "SELECT settingkey,ringsetting,shiftsetting  FROM settings WHERE settingkey= '" + key+"'" ;
+                try
+                {
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                        possibleSettings.Add(new setting() {settingkey=reader.GetString(0), ringsetting=reader.GetString(1),shiftsetting=reader.GetString(2) });
+                }
+                catch (NpgsqlException ex)
+                {
+                    Console.WriteLine(ex.Message.ToString());
+                }
+              
+            }
+        }
+
 
         private void printPermutationDict(Dictionary<char,char> dict)
         {
@@ -57,35 +140,54 @@ namespace Bombe_BruteForce
                 CF[letter] = '\0';
             }
 
-            for (int i = 0; i < message_encrypts.Count; i++)
-            {     
-
-
-
+            int i = 0;
+            while (i < message_encrypts.Count && (AD.ContainsValue('\0') || BE.ContainsValue('\0') || CF.ContainsValue('\0')))
+            {
                 string currentMessage = message_encrypts[i];
-                if (AD[currentMessage[0]]=='\0')
+                if (AD[currentMessage[0]] == '\0' && !AD.ContainsValue(currentMessage[3]))
                 {
-                    if (currentMessage[0] == 'L')
-                    {
-                        Console.WriteLine();
-                    }
                     AD[currentMessage[0]] = currentMessage[3];
                 }
-                if (BE[currentMessage[1]] == '\0')
+                if (BE[currentMessage[1]] == '\0' && !BE.ContainsValue(currentMessage[4]))
                 {
-                BE[currentMessage[1]] = currentMessage[4];
+                    BE[currentMessage[1]] = currentMessage[4];
                 }
-                if (CF[currentMessage[2]] == '\0')
+                if (CF[currentMessage[2]] == '\0' && !CF.ContainsValue(currentMessage[5]))
                 {
 
-                CF[currentMessage[2]] = currentMessage[5];
+                    CF[currentMessage[2]] = currentMessage[5];
                 }
-
+                i++;
             }
+
 
         }
 
+        private void generateMessages(int amount)
+        {
+           System.IO.StreamWriter messageOutfile = new System.IO.StreamWriter(@"C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\message.text");
+            System.IO.StreamWriter cipherOutfile = new System.IO.StreamWriter(@"C:\Users\pauld\OneDrive\Desktop\Enigma-Machine\Bombe_BruteForce\ciphers.txt");
 
+
+            PermutationGenerator generator = new PermutationGenerator();
+            string message = "";
+            string cipher = "";
+
+            for (int i=0; i < amount; i++)
+            {
+                message = generator.messageGenerator(this.garenteedWord);
+                enigma.setSettings(this.plugSetting, this.keySetting, this.rottorSetting);
+                cipher = enigma.encryptMessage(message);
+                messageOutfile.WriteLine(message);
+                cipherOutfile.WriteLine(cipher);
+
+                this.EncryptedMessages.Add(cipher);
+                this.UnencryptedMessages.Add(message);
+            }
+
+            messageOutfile.Close();
+            cipherOutfile.Close();
+        }
 
         private List<string> makeChainsFromPermutatuinDict(Dictionary<char,char> dict) {
             string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -170,5 +272,65 @@ namespace Bombe_BruteForce
 
             return returnString;
         }
+
+
+        public void generatePlugComboOptions(string rotorSetting, string shiftSetting)
+        {
+            bool[] used = new bool[26];
+
+            //test for no plug swaps
+            enigma.setSettings("", shiftSetting, rotorSetting);
+
+            if (isGoodbyeWorldAtEnd(enigma.decryptMessage(this.EncryptedMessages[0])))
+            {
+                Console.WriteLine( ""+" "+ shiftSetting+" "+rotorSetting);
+            }
+
+            recursiveGetString("", used, rotorSetting, shiftSetting);
+
+
+        }
+
+        public string recursiveGetString(string prior, bool[] used , string rotorSetting, string shiftSetting)
+        {
+            for (int letter1 = 0; letter1 < 26; letter1++)
+            {
+                if (!used[letter1])
+                {
+                    used[letter1] = true;
+                    for (int letter2 = 0; letter2 < 26; letter2++)
+                    {
+                        if (!used[letter2] && letter1 < letter2)
+                        {
+                            count += 1;
+                            used[letter2] = true;
+                            enigma.setSettings((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')),shiftSetting,rotorSetting);
+                            if (count == 100000)
+                            {
+                                stopwatch.Stop();
+                                Console.WriteLine(stopwatch.Elapsed);
+                            }
+                            if (isGoodbyeWorldAtEnd(enigma.decryptMessage(this.EncryptedMessages[0])))
+                            {
+                                Console.WriteLine((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A'))+" "+ shiftSetting+ " "+rotorSetting);
+                            }
+                            this.recursiveGetString(prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A') + " ", used, rotorSetting, shiftSetting);
+
+                            used[letter2] = false;
+
+
+                        }
+                    }
+                    used[letter1] = false;
+
+                }
+
+            }
+
+
+            return "";
+        }
+
+
     }
 }

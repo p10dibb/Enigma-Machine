@@ -44,6 +44,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[4.1.5, )"
+            },
+            "StopWatch": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
