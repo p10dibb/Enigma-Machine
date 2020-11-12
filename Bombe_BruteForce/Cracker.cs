@@ -10,10 +10,12 @@ namespace Bombe_BruteForce
     class Cracker
     {
         Machine enigma = new Machine();
-        string keySetting = "ZAC";
+        string keySetting = "AAB";
         string rottorSetting = "531";
         string plugSetting = "AG BF OP KU QT";
-        string garenteedWord = "GOODBYEWORLD";
+        string garenteedWord = "LISTENINGPOSTSIGNINGOFF";
+        int maxPlugCombos = 10;
+        //HAVEAWONDERFULLDAY
         Dictionary<char, char> AD = new Dictionary<char, char>();
         Dictionary<char, char> BE = new Dictionary<char, char>();
         Dictionary<char, char> CF = new Dictionary<char, char>();
@@ -22,9 +24,17 @@ namespace Bombe_BruteForce
         NpgsqlConnection connection = new NpgsqlConnection();
         List<setting> possibleSettings = new List<setting>();
         Stopwatch stopwatch = new Stopwatch();
+
+        List<string> possiblePlugCombos = new List<string>();
+        int highestSimilarity = 0;
+        List<int> stepHighest = new List<int>();
+
         //this.generatePermutationDict(message_key_encrypts);
 
         int count = 0;
+
+        //DTQDTQTHEBROWNFOXSADLYHITBELOWFIVEWHITECAVEGOODBYEWORLD
+        //BFRBFRONEREDHORSESLOWLYRANINFIVEGREENJUNGLEGOODBYEWORLD
 
         public Cracker()
         {
@@ -40,59 +50,175 @@ namespace Bombe_BruteForce
 
         public void runner()
         {
+            stopwatch.Start();
+            testPlugFinder();
+            stopwatch.Start();
+            Console.WriteLine(stopwatch.Elapsed);
+        }
 
-            string message = "HELLOWORLD";
-            enigma.setSettings("", keySetting, rottorSetting);
-            string encryptedMessage = enigma.encryptMessage(message);
+
+        private void testPlugFinder()
+        {
             this.generateMessages(500);
 
-           string key= this.generateDictionaryKey(this.EncryptedMessages);
-
-            Console.WriteLine(key);
+            string key = this.generateDictionaryKey(this.EncryptedMessages);
             this.getOptionsfromDB(key);
 
-            Console.WriteLine(possibleSettings.Count);
-            foreach(setting s in possibleSettings)
-            {
 
-                Console.WriteLine("-------" + s.shiftsetting + "---" + s.ringsetting);
-                enigma.setSettings("", s.shiftsetting, s.ringsetting);
-                Console.WriteLine(enigma.decryptMessage(this.EncryptedMessages[0]));
-                enigma.setSettings("", s.shiftsetting, s.ringsetting);
-                Console.WriteLine(enigma.decryptMessage(this.EncryptedMessages[1]));
-                //stopwatch.Start();
-                //this.generatePlugComboOptions( s.ringsetting, s.shiftsetting);
+            string message1 = this.EncryptedMessages[0];
+            int highestCombo = 0;
+            List<string> highestCombos = new List<string>();
+            foreach (setting s in possibleSettings)
+            {
+                int baseline = this.garenteedWordSimilarity(enigma.decryptMessage(message1));
+                this.recursiveGetString("", new bool[26], message1, baseline, 0, 0, this.maxPlugCombos, s.shiftsetting, s.ringsetting);
+
+
+                if (this.highestSimilarity > highestCombo)
+                {
+                    highestCombo = this.highestSimilarity;
+                    highestCombos.Clear();
+                }
+
+                if (this.highestSimilarity >= highestCombo)
+                {
+                    foreach (string str in possiblePlugCombos)
+                    {
+                        highestCombos.Add(s.ringsetting + " " + s.shiftsetting + " " + str);
+                    }
+                }
+                this.highestSimilarity = -500;
+                this.stepHighest.Clear();
+                this.possiblePlugCombos.Clear();
+            }
+            Console.WriteLine("Combo Score");
+            foreach (string combo in highestCombos)
+            {
+                Console.WriteLine(combo);
+            }
+        }
+
+
+
+        public string recursiveGetString(string prior, bool[] used, string message, int baseline,int step, int pass,int maxLength,string shiftSetting,string ringSetting)
+        {
+            if (step == maxLength)
+            {
+                return "";
+            }
+
+            if (this.stepHighest.Count-1 < step)
+            {
+                this.stepHighest.Add(baseline);
+            }
+
+
+                int currentValue = -500;
+            for (int letter1 = 0; letter1 < 26; letter1++)
+            {
+                if (!used[letter1])
+                {
+                    used[letter1] = true;
+                    for (int letter2 = 0; letter2 < 26; letter2++)
+                    {
+                        if (!used[letter2] && letter1 < letter2)
+                        {
+                            count += 1;
+                            used[letter2] = true;
+                            enigma.setSettings((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')),shiftSetting,ringSetting    );
+                            currentValue = this.garenteedWordSimilarity(enigma.decryptMessage(message));
+                            //Console.WriteLine((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A'))+" Value: "+currentValue);
+
+                            if (pass == 0)
+                            {
+                                if (currentValue > baseline && this.stepHighest[step] < currentValue)
+                                {
+                                    if (currentValue > this.stepHighest[step])
+                                    {
+                                        this.stepHighest[step] = currentValue;
+                                    }
+                                    if (this.highestSimilarity < currentValue)
+                                    {
+                                        this.possiblePlugCombos.Clear();
+
+                                        this.highestSimilarity = currentValue;
+                                        this.possiblePlugCombos.Add((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')));
+
+                                    }
+                                    else if (this.highestSimilarity == currentValue){
+                                        this.possiblePlugCombos.Add((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')));
+
+                                    }
+
+
+
+
+                                    //Console.WriteLine("PASS: "+pass+" "+(prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')) + ": " + currentValue);
+
+                                    this.recursiveGetString(prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A') + " ", used, message, currentValue, step + 1,pass,maxLength,shiftSetting,ringSetting);
+                                }
+
+
+                            }
+                            else
+                            {
+                                if (currentValue >= baseline && this.stepHighest[step] <= currentValue)
+                                {
+                                    if (currentValue > this.stepHighest[step])
+                                    {
+                                        this.stepHighest[step] = currentValue;
+                                    }
+                                    if (this.highestSimilarity < currentValue)
+                                    {
+                                        this.possiblePlugCombos.Clear();
+
+                                        this.highestSimilarity = currentValue;
+
+                                    }
+
+                                    this.possiblePlugCombos.Add((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')));
+
+
+
+                                    //Console.WriteLine("PASS: " + pass + " " + (prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')) + ": " + currentValue);
+
+                                    this.recursiveGetString(prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A') + " ", used, message, currentValue, step + 1,pass,maxLength,shiftSetting,ringSetting);
+                                }
+
+
+                            }
+                            used[letter2] = false;
+
+
+                        }
+                    }
+                    used[letter1] = false;
+
+                }
 
             }
 
 
-
+            return "";
         }
 
-        private bool isGoodbyeWorldAtEnd(string message)
-        {
-            string check = "GOODBYEWORLD";
 
-            for(int i = 1; i <= check.Length; i++)
+        private int garenteedWordSimilarity(string message)
+        {
+            int similarity = 0;
+            string check = this.garenteedWord;
+
+            for (int i = 1; i <= check.Length; i++)
             {
-                if (message[message.Length - i] != check[check.Length - i])
+                if (message[message.Length - i] == check[check.Length - i])
                 {
-                    return false;
+                    similarity++;
                 }
             }
 
-            return true;
+            return similarity;
         }
 
-        private bool tryPlugs(setting currentSetting)
-        {
-            string encrypted = this.EncryptedMessages[0];
-
-            string garenteed = "GOODBYEWORLD";
-
-            return true;
-        }
-        
 
         private void getOptionsfromDB(string key)
         {
@@ -117,16 +243,6 @@ namespace Bombe_BruteForce
             }
         }
 
-
-        private void printPermutationDict(Dictionary<char,char> dict)
-        {
-            foreach (KeyValuePair<char, char> keyValue in dict)
-            {
-                Console.WriteLine(keyValue.Key + " " + keyValue.Value);
-
-            }
-
-        }
 
 
         private void generatePermutationDict(List<string> message_encrypts)
@@ -273,64 +389,6 @@ namespace Bombe_BruteForce
             return returnString;
         }
 
-
-        public void generatePlugComboOptions(string rotorSetting, string shiftSetting)
-        {
-            bool[] used = new bool[26];
-
-            //test for no plug swaps
-            enigma.setSettings("", shiftSetting, rotorSetting);
-
-            if (isGoodbyeWorldAtEnd(enigma.decryptMessage(this.EncryptedMessages[0])))
-            {
-                Console.WriteLine( ""+" "+ shiftSetting+" "+rotorSetting);
-            }
-
-            recursiveGetString("", used, rotorSetting, shiftSetting);
-
-
-        }
-
-        public string recursiveGetString(string prior, bool[] used , string rotorSetting, string shiftSetting)
-        {
-            for (int letter1 = 0; letter1 < 26; letter1++)
-            {
-                if (!used[letter1])
-                {
-                    used[letter1] = true;
-                    for (int letter2 = 0; letter2 < 26; letter2++)
-                    {
-                        if (!used[letter2] && letter1 < letter2)
-                        {
-                            count += 1;
-                            used[letter2] = true;
-                            enigma.setSettings((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A')),shiftSetting,rotorSetting);
-                            if (count == 100000)
-                            {
-                                stopwatch.Stop();
-                                Console.WriteLine(stopwatch.Elapsed);
-                            }
-                            if (isGoodbyeWorldAtEnd(enigma.decryptMessage(this.EncryptedMessages[0])))
-                            {
-                                Console.WriteLine((prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A'))+" "+ shiftSetting+ " "+rotorSetting);
-                            }
-                            this.recursiveGetString(prior + "" + (char)(letter1 + 'A') + (char)(letter2 + 'A') + " ", used, rotorSetting, shiftSetting);
-
-                            used[letter2] = false;
-
-
-                        }
-                    }
-                    used[letter1] = false;
-
-                }
-
-            }
-
-
-            return "";
-        }
-
-
+    
     }
 }
