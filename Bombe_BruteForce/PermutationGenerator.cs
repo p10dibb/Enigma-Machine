@@ -147,7 +147,7 @@ namespace Bombe_BruteForce
 
         }
 
-        public string messageGenerator(string garenteedEndPhrase)
+        public string messageGenerator( string garenteedMiddlePosition,string garenteedEndPhrase)
         {
             string returnString = "";
             string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -158,6 +158,7 @@ namespace Bombe_BruteForce
             returnString = messageKey;
 
             //allows 10^9 differnt messages to be generated
+            string[] word0 = { "A", "THE", "AN" };
             string[] word1 = { "A", "THE", "SEVERAL", "FEW", "ONE", "TWO", "THREE", "MANY", "FOUR", "FIVE" };
             string[] word2 = { "BROWN", "RED", "BLACK", "WHITE", "LARGE", "SMALL", "GREEN", "BLUE", "YELLOW", "PURPLE" };
             string[] word3 = { "FOX", "DOG", "FISH", "FROG", "BIRD", "DINOSAUR", "BUG", "DEER", "HORSE", "COW" };
@@ -168,7 +169,7 @@ namespace Bombe_BruteForce
             string[] word8 = { "BROWN", "RED", "BLACK", "WHITE", "LARGE", "SMALL", "GREEN", "BLUE", "YELLOW", "PURPLE" };
             string[] word9 = { "WALL", "DOOR", "HILL", "CAVE", "JUNGLE", "SMALL", "PIT", "TREE", "ROCK", "MOUNTAIN" };
 
-            returnString = returnString + word1[rand.Next() % word1.Length] + word2[rand.Next() % word2.Length] + word3[rand.Next() % word3.Length] + word4[rand.Next() % word4.Length];
+            returnString = returnString + word0[rand.Next() % word0.Length]+garenteedMiddlePosition+word1[rand.Next() % word1.Length] + word2[rand.Next() % word2.Length] + word3[rand.Next() % word3.Length] + word4[rand.Next() % word4.Length];
             returnString = returnString + word5[rand.Next() % word5.Length] + word6[rand.Next() % word6.Length] + word7[rand.Next() % word7.Length] + word8[rand.Next() % word8.Length] + word9[rand.Next() % word9.Length];
 
 
